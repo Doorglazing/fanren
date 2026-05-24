@@ -1,6 +1,6 @@
 /**
  * Vercel Serverless Function — 留言板 API
- * 存储: Vercel Blob（免费2GB）→ 内存
+ * 存储: Vercel Blob（私人模式，需 Dashboard 创建并连接）→ 内存
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import crypto from 'crypto';
@@ -15,23 +15,28 @@ interface Comment {
 }
 
 const BLOB_PATH = 'comments.json';
-const PW_HASH = process.env.ADMIN_PW_HASH || '2acc28202c809b54a440442e02b96c837e16eb8b781de6aab241472e79b8f3c6';
+const PW_HASH = '2acc28202c809b54a440442e02b96c837e16eb8b781de6aab241472e79b8f3c6';
 let memoryStore: Comment[] = [];
 
 function verifyPw(input: string): boolean {
-  if (!input || !PW_HASH) return false;
-  return crypto.createHash('sha256').update(input).digest('hex') === PW_HASH;
+  if (!input) return false;
+  const h = crypto.createHash('sha256').update(input).digest('hex');
+  return h === (process.env.ADMIN_PW_HASH || PW_HASH);
 }
 function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 8); }
 
 async function load(): Promise<Comment[]> {
   if (process.env.BLOB_READ_WRITE_TOKEN) {
     try {
-      const { list } = await import('@vercel/blob');
-      const { blobs } = await list({ prefix: BLOB_PATH, limit: 1 });
-      if (blobs.length > 0) {
-        const res = await fetch(blobs[0].url);
-        return await res.json();
+      const { head } = await import('@vercel/blob');
+      const blob = await head(BLOB_PATH);
+      if (blob) {
+        const res = await fetch(blob.url);
+        if (res.ok) {
+          const data = await res.json();
+          memoryStore = data;
+          return data;
+        }
       }
     } catch { /* fallthrough */ }
   }
@@ -39,14 +44,13 @@ async function load(): Promise<Comment[]> {
 }
 
 async function save(comments: Comment[]) {
+  memoryStore = comments;
   if (process.env.BLOB_READ_WRITE_TOKEN) {
     try {
       const { put } = await import('@vercel/blob');
-      await put(BLOB_PATH, JSON.stringify(comments), { access: 'public', contentType: 'application/json' });
-      return;
-    } catch { /* fallthrough */ }
+      await put(BLOB_PATH, JSON.stringify(comments), { access: 'private', allowOverwrite: true });
+    } catch { /* keep memory */ }
   }
-  memoryStore = comments;
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -85,11 +89,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   if (req.method === 'DELETE') {
-    const id = req.query.id as string, pw = req.query.pw as string;
-    if (!id || !verifyPw(pw || '')) return res.status(403).json({ ok: false });
+    const id = req.query.id as string, pw = (req.query.pw as string) || '';
+    if (!id) return res.status(400).json({ ok: false, error: 'missing id' });
+    if (!verifyPw(pw)) return res.status(403).json({ ok: false, error: 'wrong password' });
     const comments = await load();
     const idx = comments.findIndex(x => x.id === id);
-    if (idx !== -1) { comments.splice(idx, 1); await save(comments); }
+    if (idx === -1) return res.status(404).json({ ok: false, error: 'not found' });
+    comments.splice(idx, 1);
+    await save(comments);
     return res.json({ ok: true });
   }
 

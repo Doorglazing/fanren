@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useI18n } from '../../i18n';
 import styles from './CommentWall.module.css';
 
@@ -18,9 +18,10 @@ export default function CommentWall() {
   const [text, setText] = useState('');
   const [sort, setSort] = useState<'time'|'likes'>('time');
   const [loading, setLoading] = useState(false);
+  const adminPwRef = useRef('');
   const [adminPw, setAdminPw] = useState('');
   const [showAdmin, setShowAdmin] = useState(false);
-  const [adminOk, setAdminOk] = useState(false);
+  const [deleting, setDeleting] = useState<string | null>(null);
   const [liked, setLiked] = useState<Set<string>>(() => {
     try { return new Set(JSON.parse(localStorage.getItem('fanren-liked')||'[]')); } catch { return new Set(); }
   });
@@ -80,10 +81,22 @@ export default function CommentWall() {
   };
 
   const del = async (id: string) => {
-    if (!adminOk) return;
-    const res = await fetch(`/api/comments?id=${id}&pw=${encodeURIComponent(adminPw)}`, { method: 'DELETE' });
-    const data = await res.json();
-    if (data.ok) fetchComments();
+    const pw = adminPwRef.current;
+    if (!pw || deleting) return;
+    setDeleting(id);
+    try {
+      const res = await fetch(`/api/comments?id=${id}&pw=${encodeURIComponent(pw)}`, { method: 'DELETE' });
+      const data = await res.json();
+      if (data.ok) {
+        setComments(prev => prev.filter(c => c.id !== id));
+        setTotal(prev => prev - 1);
+      } else {
+        alert(data.error || '删除失败');
+      }
+    } catch {
+      alert('网络错误，请重试');
+    }
+    setDeleting(null);
   };
 
   const fmt = (ts: number) => {
@@ -140,7 +153,7 @@ export default function CommentWall() {
               <p className={styles.text}>{c.text}</p>
               <div className={styles.meta}>
                 <button className={`${styles.likeBtn} ${liked.has(c.id)?styles.liked:''}`} onClick={()=>toggleLike(c.id)}>✦ {c.likes}</button>
-                {adminOk && <button className={styles.delBtn} onClick={()=>del(c.id)} title="Delete">✕</button>}
+                {adminPw && <button className={styles.delBtn} onClick={()=>del(c.id)} disabled={deleting === c.id} title="Delete">{deleting === c.id ? '…' : '✕'}</button>}
               </div>
             </div>
           ))}
@@ -169,22 +182,13 @@ export default function CommentWall() {
               <input
                 className={styles.adminInput}
                 value={adminPw}
-                onChange={e => setAdminPw(e.target.value)}
+                onChange={e => { setAdminPw(e.target.value); adminPwRef.current = e.target.value; }}
                 placeholder={t('comments.adminPw')}
                 type="password"
-                disabled={adminOk}
-                onKeyDown={e => e.key === 'Enter' && !adminOk && setAdminOk(true)}
               />
-              {!adminOk ? (
-                <button className={styles.adminUnlock} onClick={() => setAdminOk(true)}>
-                  ✓
-                </button>
-              ) : (
-                <span className={styles.adminUnlocked}>解锁</span>
-              )}
               <button
                 className={styles.adminHide}
-                onClick={() => { setShowAdmin(false); setAdminPw(''); setAdminOk(false); }}
+                onClick={() => { setShowAdmin(false); setAdminPw(''); }}
               >
                 {t('comments.adminClose')}
               </button>
