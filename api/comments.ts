@@ -31,10 +31,13 @@ async function load(): Promise<Comment[]> {
       const { list } = await import('@vercel/blob');
       const { blobs } = await list({ prefix: BLOB_PATH, limit: 1 });
       if (blobs.length > 0) {
-        const res = await fetch(blobs[0].url);
-        if (res.ok) {
-          const data = await res.json();
-          if (Array.isArray(data)) { memoryStore = data; return data; }
+        const downloadUrl = blobs[0].downloadUrl;
+        if (downloadUrl) {
+          const res = await fetch(downloadUrl);
+          if (res.ok) {
+            const data = await res.json();
+            if (Array.isArray(data)) { memoryStore = data; return data; }
+          }
         }
       }
     } catch { /* fallthrough */ }
