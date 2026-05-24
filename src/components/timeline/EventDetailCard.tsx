@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useI18n } from '../../i18n';
 import type { TimelineEvent } from '../../types';
-import { EVENT_TYPE_LABELS, EVENT_TYPE_COLORS } from '../../utils/constants';
+import { EVENT_TYPE_COLORS } from '../../utils/constants';
 import { characters } from '../../data/characters';
 import styles from './EventDetailCard.module.css';
 

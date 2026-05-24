@@ -8,7 +8,7 @@ import styles from './TianjiPage.module.css';
 
 export default function TianjiPage() {
   const [result, setResult] = useState<FortuneEntry | null>(null);
-  const { t, lang } = useI18n();
+  const { t } = useI18n();
 
   useEffect(() => {
     const root = document.getElementById('root');
