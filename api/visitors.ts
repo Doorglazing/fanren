@@ -1,47 +1,38 @@
-/**
- * Vercel Serverless Function — 访问统计
- * 每个 IP 只计一次，从 0 开始
- */
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
-const BLOB_PATH = 'visitors.json';
 let memory: string[] = [];
 
 async function load(): Promise<string[]> {
-  if (process.env.BLOB_READ_WRITE_TOKEN) {
-    try {
-      const { list } = await import('@vercel/blob');
-      const { blobs } = await list({ prefix: BLOB_PATH, limit: 1 });
-      if (blobs.length > 0) {
-        const downloadUrl = blobs[0].downloadUrl;
-        if (downloadUrl) {
-          const res = await fetch(downloadUrl);
-          if (res.ok) {
-            const data = await res.json();
-            if (Array.isArray(data)) { memory = data; return data; }
-          }
-        }
-      }
-    } catch {}
-  }
+  const token = process.env.BLOB_READ_WRITE_TOKEN;
+  if (!token) return memory;
+  try {
+    const { list } = await import('@vercel/blob');
+    const { blobs } = await list({ prefix: 'visitors.json', limit: 1 });
+    if (blobs.length === 0) return memory;
+    const res = await fetch(blobs[0].url, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data)) { memory = data; return data; }
+    }
+  } catch {}
   return memory;
 }
 
 async function save(data: string[]) {
   memory = data;
-  if (process.env.BLOB_READ_WRITE_TOKEN) {
-    try {
-      const { put } = await import('@vercel/blob');
-      await put(BLOB_PATH, JSON.stringify(data), { access: 'private', allowOverwrite: true });
-    } catch {}
-  }
+  if (!process.env.BLOB_READ_WRITE_TOKEN) return;
+  try {
+    const { put } = await import('@vercel/blob');
+    await put('visitors.json', JSON.stringify(data), { access: 'private' });
+  } catch {}
 }
 
 function getIP(req: VercelRequest): string {
   return (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim()
     || req.headers['x-real-ip'] as string
-    || req.socket.remoteAddress
-    || '';
+    || req.socket.remoteAddress || '';
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {

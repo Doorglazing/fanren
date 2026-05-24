@@ -1,6 +1,5 @@
 /**
  * Vercel Serverless Function — 留言板 API
- * 存储: Vercel Blob（私人模式，需 Dashboard 创建并连接）→ 内存
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import crypto from 'crypto';
@@ -14,47 +13,45 @@ interface Comment {
   location?: string;
 }
 
-const BLOB_PATH = 'comments.json';
-const PW_HASH = '2acc28202c809b54a440442e02b96c837e16eb8b781de6aab241472e79b8f3c6';
-let memoryStore: Comment[] = [];
+const PW_HASH = process.env.ADMIN_PW_HASH || '2acc28202c809b54a440442e02b96c837e16eb8b781de6aab241472e79b8f3c6';
+let memory: Comment[] = [];
 
 function verifyPw(input: string): boolean {
   if (!input) return false;
-  const h = crypto.createHash('sha256').update(input).digest('hex');
-  return h === (process.env.ADMIN_PW_HASH || PW_HASH);
+  return crypto.createHash('sha256').update(input).digest('hex') === PW_HASH;
 }
 function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 8); }
 
+// ── Blob 读 ──
 async function load(): Promise<Comment[]> {
-  if (process.env.BLOB_READ_WRITE_TOKEN) {
-    try {
-      const { list } = await import('@vercel/blob');
-      const { blobs } = await list({ prefix: BLOB_PATH, limit: 1 });
-      if (blobs.length > 0) {
-        const downloadUrl = blobs[0].downloadUrl;
-        if (downloadUrl) {
-          const res = await fetch(downloadUrl);
-          if (res.ok) {
-            const data = await res.json();
-            if (Array.isArray(data)) { memoryStore = data; return data; }
-          }
-        }
-      }
-    } catch { /* fallthrough */ }
-  }
-  return memoryStore;
+  const token = process.env.BLOB_READ_WRITE_TOKEN;
+  if (!token) return memory;
+  try {
+    const { list } = await import('@vercel/blob');
+    const { blobs } = await list({ prefix: 'comments.json', limit: 1 });
+    if (blobs.length === 0) return memory;
+    const res = await fetch(blobs[0].url, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data)) { memory = data; return data; }
+    }
+  } catch {}
+  return memory;
 }
 
+// ── Blob 写 ──
 async function save(comments: Comment[]) {
-  memoryStore = comments;
-  if (process.env.BLOB_READ_WRITE_TOKEN) {
-    try {
-      const { put } = await import('@vercel/blob');
-      await put(BLOB_PATH, JSON.stringify(comments), { access: 'private', allowOverwrite: true });
-    } catch { /* keep memory */ }
-  }
+  memory = comments;
+  if (!process.env.BLOB_READ_WRITE_TOKEN) return;
+  try {
+    const { put } = await import('@vercel/blob');
+    await put('comments.json', JSON.stringify(comments), { access: 'private' });
+  } catch {}
 }
 
+// ── 路由 ──
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
@@ -91,7 +88,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   if (req.method === 'DELETE') {
-    const id = req.query.id as string, pw = (req.query.pw as string) || '';
+    const id = req.query.id as string, pw = (req.body?.pw as string) || '';
     if (!id) return res.status(400).json({ ok: false, error: 'missing id' });
     if (!verifyPw(pw)) return res.status(403).json({ ok: false, error: 'wrong password' });
     const comments = await load();
