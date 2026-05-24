@@ -87,6 +87,13 @@
   font-family: var(--font-body);
 }
 
+.location {
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  opacity: 0.7;
+  font-family: var(--font-body);
+}
+
 .text { font-family:var(--font-body); font-size:0.95rem; color:var(--ink-medium); line-height:1.7; margin-bottom:0.5rem; word-break:break-word; }
 .meta { display:flex; align-items:center; gap:0.75rem; }
 .likeBtn { font-family:var(--font-display); font-size:0.82rem; color:var(--ink-light); padding:0.15rem 0.5rem; border:1px solid rgba(0,0,0,0.08); border-radius:3px; transition:all 0.2s; }
@@ -123,8 +130,13 @@
 
 /* Admin */
 .adminRow { margin-top:1.5rem; text-align:right; }
-.adminToggle { font-size:0.7rem; color:var(--ink-faint); border:none; background:none; cursor:pointer; }
-.adminToggle:hover { color:var(--vermillion); }
+.adminToggle { font-size:0.75rem; color:var(--ink-light); border:1px solid rgba(0,0,0,0.1); border-radius:3px; background:var(--rice-paper); cursor:pointer; padding:0.25rem 0.6rem; transition:all 0.2s; }
+.adminToggle:hover { color:var(--vermillion); border-color:var(--vermillion); }
 .adminBox { display:flex; gap:0.4rem; justify-content:flex-end; align-items:center; }
 .adminInput { width:120px; padding:0.3rem 0.5rem; font-size:0.75rem; border:1px solid rgba(0,0,0,0.15); border-radius:3px; }
+.adminInput:disabled { background:#eee; opacity:0.6; }
+.adminUnlock { font-size:0.75rem; padding:0.3rem 0.5rem; border:1px solid var(--jade); border-radius:3px; background:rgba(91,140,90,0.1); color:var(--jade); cursor:pointer; transition:all 0.2s; }
+.adminUnlock:hover { background:rgba(91,140,90,0.2); }
+.adminUnlocked { font-size:0.7rem; color:var(--jade); padding:0.3rem 0.4rem; border:1px solid var(--jade); border-radius:3px; opacity:0.7; }
 .adminHide { font-size:0.75rem; color:var(--ink-light); border:none; background:none; cursor:pointer; }
+.adminHide:hover { color:var(--vermillion); }

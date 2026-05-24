@@ -4,11 +4,16 @@ export interface TimelineEvent {
   id: string;
   sortOrder: number;
   title: string;
+  titleEn?: string;
   timeLabel: string;
+  timeLabelEn?: string;
   chapter: string;
+  chapterEn?: string;
   description: string;
+  descriptionEn?: string;
   type: TimelineEventType;
   location: string;
+  locationEn?: string;
   relatedCharacterIds: string[];
   relatedArtifactIds: string[];
   positionPercent: { x: number; y: number };

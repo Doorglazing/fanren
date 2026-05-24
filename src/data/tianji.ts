@@ -2,7 +2,9 @@ export interface FortuneEntry {
   id: string;
   level: number;
   name: string;
+  nameEn: string;
   story: { title: string; text: string };
+  storyEn: { title: string; text: string };
   color: string;
   bgEffect: string;
 }
@@ -60,17 +62,70 @@ const stories: Record<string, { title: string; text: string }[]> = {
   ],
 };
 
+const storiesEn: Record<string, { title: string; text: string }[]> = {
+  '天命道祖': [
+    { title: 'Heaven-Opening Bottle Acknowledges Its Master', text: 'Han Li accidentally obtains a mysterious little green bottle, gaining the heaven-defying ability to accelerate the growth of spiritual herbs. A village boy with no background truly begins his path of defying fate.' },
+    { title: 'Azure Bee Cloud Swords Forged', text: 'Han Li successfully refines his life-bound treasure, the Azure Bee Cloud Swords, with Evil-Repelling Divine Thunder at their core. They later become a top-tier weapon that sweeps through all enemies.' },
+    { title: 'Ascension to the Spirit Realm', text: 'After countless life-and-death struggles in the Human Realm, Han Li finally breaks through to Deity Transformation and successfully ascends. A former mortal becomes a truly mighty cultivator.' },
+  ],
+  '气运滔天': [
+    { title: 'Meeting Nangong Wan at the Blood-Colored Forbidden Land', text: 'Han Li unexpectedly rescues Nangong Wan in the Blood-Colored Forbidden Land. Bound by the ink dragon\'s toxic mist, their fate is sealed. This chance encounter changes his cultivation journey forever.' },
+    { title: 'The Void Heaven Cauldron Appears', text: 'The Void Heaven Temple opens, and countless cultivators fight over ancient treasures. Through caution and luck, Han Li ultimately obtains a crucial opportunity — the Void Heaven Cauldron.' },
+    { title: 'Ancient Cultivator\'s Legacy in the Scattered Star Sea', text: 'While cultivating in the Scattered Star Sea, Han Li stumbles upon an ancient cultivator\'s ruins, gaining numerous techniques and puppetry inheritances that greatly boost his power.' },
+  ],
+  '大吉': [
+    { title: 'Foundation Establishment Success', text: 'After arduous efforts, Han Li finally refines a Foundation Establishment Pill and succeeds. He truly steps into the ranks of cultivators.' },
+    { title: 'Treasure Hunting at the Taian Gathering', text: 'New to the cultivation world, Han Li scores a massive deal at the Taian Gathering, buying precious materials at low prices.' },
+    { title: 'Obtaining the Dayan Arts', text: 'Han Li acquires the Dayan Arts, granting him divine sense far beyond his peers, laying the foundation for puppetry and artifact refinement.' },
+  ],
+  '小吉': [
+    { title: 'Martial Training at the Seven Mysteries Sect', text: 'Young Han Li enters the Seven Mysteries Sect. Though merely an ordinary disciple, it brings him into contact with the cultivation world that will change his destiny.' },
+    { title: 'Learning Alchemy', text: 'Using the Heaven-Opening Bottle to accelerate spiritual herb growth, Han Li gradually masters alchemy, ensuring his cultivation resources never run dry.' },
+    { title: 'Obtaining a Flying Artifact', text: 'The first time he rides a flying artifact, Han Li finally experiences the freedom of soaring through the clouds like a true cultivator.' },
+  ],
+  '平运': [
+    { title: 'Secluded Cultivation', text: 'Han Li enters long-term seclusion, cultivating for decades. No great adventures, no epic battles — just steady, if tedious, progress.' },
+    { title: 'Market Trading', text: 'To gather resources discreetly, Han Li frequently disguises himself at markets, trading with fellow cultivators in ordinary transactions.' },
+    { title: 'Crafting Talismans', text: 'Han Li practices talisman-making relentlessly. Though the process is mundane, he accumulates a wealth of life-saving tools for battle.' },
+  ],
+  '暗流涌动': [
+    { title: 'Eve of the Demonic Invasion', text: 'The Tiannan cultivation world appears calm, but the Demonic Six Sects have secretly assembled. A great war is imminent.' },
+    { title: 'Before the Void Heaven Temple Opens', text: 'Countless old monsters scheme in advance. On the surface they cooperate, but in the shadows, each plots to kill and seize treasures.' },
+    { title: 'Deteriorating Situation at Yellow Maple Valley', text: 'Internal factions grow restless, major powers suspect each other. Han Li gradually realizes his sect is not truly safe.' },
+  ],
+  '小凶': [
+    { title: 'Pursued by Feng Yue', text: 'In the Blood-Colored Forbidden Land, Han Li is hunted by Feng Yue at the peak of Qi Condensation, narrowly escaping death several times.' },
+    { title: 'Ink Dragon Rampage', text: 'Han Li and Nangong Wan join forces against the ink dragon. A single misstep could mean instant death.' },
+    { title: 'Cultivation Blockage', text: 'After years of seclusion, Han Li still cannot break through his bottleneck. His spiritual energy begins to destabilize.' },
+  ],
+  '大凶': [
+    { title: 'Doctor Mo\'s Possession Attempt', text: 'His former mentor Doctor Mo finally reveals his true face, attempting to possess Han Li\'s body. One wrong move and Han Li\'s soul would be utterly destroyed.' },
+    { title: 'Battle at the Void Heaven Temple', text: 'Nascent Soul eccentrics slaughter each other madly inside the Void Heaven Temple. Han Li can only struggle to survive in the cracks between their attacks.' },
+    { title: 'Feng Xi\'s Pursuit', text: 'In the Scattered Star Sea, the demon cultivator Feng Xi targets Han Li. He flees for his life — one pause and his path ends forever.' },
+  ],
+  '心魔缠身': [
+    { title: 'Nangong Wan\'s Memory Loss', text: 'Due to a technique malfunction, Nangong Wan gradually forgets her past. Han Li can never let go, yet cannot help.' },
+    { title: 'The Loneliness of Longevity', text: 'After each seclusion, Han Li emerges to find old friends long turned to dust. Only he continues on the cultivation path alone.' },
+    { title: 'Unstable Cultivation Mindset', text: 'After consecutive battles, inner demons gradually fester in Han Li\'s heart. He nearly suffers a qi deviation during a breakthrough.' },
+  ],
+  '杀劫将至': [
+    { title: 'Nascent Soul Battle Erupts', text: 'Multiple Nascent Soul cultivators strike simultaneously. Spiritual energy between heaven and earth goes berserk. A true cultivation war begins.' },
+    { title: 'Kunwu Mountain Opens', text: 'The ancient forbidden land of Kunwu Mountain appears, drawing old monsters from all sides. Opportunity and death are but a step apart.' },
+    { title: 'Full-Scale Demonic Assault', text: 'The Demonic Six Sects formally invade Tiannan. Countless sects are annihilated, and the entire cultivation world descends into blood and chaos.' },
+  ],
+};
+
 export const fortuneList = [
-  { name: '天命道祖', color: '#f0d060', bgEffect: 'golden', desc: '道祖垂青，万法归宗' },
-  { name: '气运滔天', color: '#78c8c8', bgEffect: 'azure', desc: '气运加身，势不可挡' },
-  { name: '大吉', color: '#d4b840', bgEffect: 'lightgold', desc: '吉星高照，诸事顺遂' },
-  { name: '小吉', color: '#7aaf6a', bgEffect: 'green', desc: '小有收获，宜守宜进' },
-  { name: '平运', color: '#9a9a9a', bgEffect: 'grey', desc: '风平浪静，稳扎稳打' },
-  { name: '暗流涌动', color: '#7a5a8a', bgEffect: 'purple', desc: '暗流潜藏，谨言慎行' },
-  { name: '小凶', color: '#c06050', bgEffect: 'red', desc: '小有波折，以退为进' },
-  { name: '大凶', color: '#c02020', bgEffect: 'blood', desc: '煞气冲天，宜避锋芒' },
-  { name: '心魔缠身', color: '#6a2080', bgEffect: 'demon', desc: '心魔作祟，固守本心' },
-  { name: '杀劫将至', color: '#e02020', bgEffect: 'lightning', desc: '杀劫临头，速避锋芒' },
+  { name: '天命道祖', nameEn: 'Heaven\'s Chosen', color: '#f0d060', bgEffect: 'golden', desc: '道祖垂青，万法归宗', descEn: 'Favored by the Dao Ancestor, all paths converge' },
+  { name: '气运滔天', nameEn: 'Overwhelming Fortune', color: '#78c8c8', bgEffect: 'azure', desc: '气运加身，势不可挡', descEn: 'Fortune upon you, unstoppable momentum' },
+  { name: '大吉', nameEn: 'Great Auspice', color: '#d4b840', bgEffect: 'lightgold', desc: '吉星高照，诸事顺遂', descEn: 'Lucky star shines, all goes smoothly' },
+  { name: '小吉', nameEn: 'Minor Auspice', color: '#7aaf6a', bgEffect: 'green', desc: '小有收获，宜守宜进', descEn: 'Small gains, favorable for both defense and advance' },
+  { name: '平运', nameEn: 'Neutral', color: '#9a9a9a', bgEffect: 'grey', desc: '风平浪静，稳扎稳打', descEn: 'Calm waters, steady progress' },
+  { name: '暗流涌动', nameEn: 'Hidden Currents', color: '#7a5a8a', bgEffect: 'purple', desc: '暗流潜藏，谨言慎行', descEn: 'Undercurrents lurk, speak and act with caution' },
+  { name: '小凶', nameEn: 'Minor Misfortune', color: '#c06050', bgEffect: 'red', desc: '小有波折，以退为进', descEn: 'Minor setbacks, retreat to advance' },
+  { name: '大凶', nameEn: 'Great Misfortune', color: '#c02020', bgEffect: 'blood', desc: '煞气冲天，宜避锋芒', descEn: 'Killing intent fills the air, avoid the frontlines' },
+  { name: '心魔缠身', nameEn: 'Inner Demons', color: '#6a2080', bgEffect: 'demon', desc: '心魔作祟，固守本心', descEn: 'Inner demons plague you, hold fast to your true heart' },
+  { name: '杀劫将至', nameEn: 'Killing Tribulation', color: '#e02020', bgEffect: 'lightning', desc: '杀劫临头，速避锋芒', descEn: 'Killing tribulation descends, flee the frontlines swiftly' },
 ] as const;
 
 export function drawFortune(): FortuneEntry {
@@ -78,11 +133,15 @@ export function drawFortune(): FortuneEntry {
   const fortune = fortuneList[idx];
   const pool = stories[fortune.name];
   const story = pool[Math.floor(Math.random() * pool.length)];
+  const poolEn = storiesEn[fortune.name];
+  const storyEn = poolEn[Math.floor(Math.random() * poolEn.length)];
   return {
     id: `${Date.now()}-${idx}`,
     level: idx,
     name: fortune.name,
+    nameEn: fortune.nameEn,
     story,
+    storyEn,
     color: fortune.color,
     bgEffect: fortune.bgEffect,
   };

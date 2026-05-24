@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default function EventDetailCard({ event, onClose }: Props) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const color = EVENT_TYPE_COLORS[event.type] || '#6b6b6b';
   const typeLabel = t(`etype.${event.type}`);
   const relatedChars = event.relatedCharacterIds
@@ -19,6 +19,11 @@ export default function EventDetailCard({ event, onClose }: Props) {
     .filter((c): c is NonNullable<typeof c> => Boolean(c));
 
   const relatedArtifacts = event.relatedArtifactIds;
+  const title = lang === 'en' && event.titleEn ? event.titleEn : event.title;
+  const timeLabel = lang === 'en' && event.timeLabelEn ? event.timeLabelEn : event.timeLabel;
+  const location = lang === 'en' && event.locationEn ? event.locationEn : event.location;
+  const description = lang === 'en' && event.descriptionEn ? event.descriptionEn : event.description;
+  const chapter = lang === 'en' && event.chapterEn ? event.chapterEn : event.chapter;
 
   return (
     <motion.div
@@ -44,14 +49,14 @@ export default function EventDetailCard({ event, onClose }: Props) {
           <span className={styles.typeBadge} style={{ color, borderColor: color }}>
             {typeLabel}
           </span>
-          <span className={styles.timeLabel}>{event.timeLabel}</span>
+          <span className={styles.timeLabel}>{timeLabel}</span>
         </div>
 
-        <h2 className={styles.title}>{event.title}</h2>
-        <p className={styles.location}>{event.location}</p>
+        <h2 className={styles.title}>{title}</h2>
+        <p className={styles.location}>{location}</p>
         <div className={styles.divider} />
 
-        <p className={styles.description}>{event.description}</p>
+        <p className={styles.description}>{description}</p>
 
         {relatedChars.length > 0 && (
           <div className={styles.section}>
@@ -79,7 +84,7 @@ export default function EventDetailCard({ event, onClose }: Props) {
           </div>
         )}
 
-        <p className={styles.chapter}>{t('event.source')}{event.chapter}</p>
+        <p className={styles.chapter}>{t('event.source')}{chapter}</p>
       </motion.div>
     </motion.div>
   );

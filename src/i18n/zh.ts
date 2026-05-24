@@ -136,6 +136,7 @@ export const zh: Record<string, string> = {
   'detail.ending': '人物结局',
   'detail.affiliation': '所属势力',
   'detail.firstAppear': '初次登场',
+  'detail.realm': '境界',
   'detail.statusAlive': '在世',
   'detail.statusDeparted': '已离去',
   'detail.statusDeceased': '已陨落',

@@ -5,14 +5,22 @@ export type ArtifactGrade = '凡器' | '法器' | '灵器' | '法宝' | '古宝'
 export interface Artifact {
   id: string;
   name: string;
+  nameEn?: string;
   imageUrl?: string;
   type: ArtifactType;
   grade: ArtifactGrade;
+  gradeEn?: string;
   ownerId: string;
   ownerName: string;
+  ownerNameEn?: string;
   description: string;
+  descriptionEn?: string;
   abilities: string[];
+  abilitiesEn?: string[];
   acquisition: string;
+  acquisitionEn?: string;
   firstAppearChapter: string;
+  firstAppearChapterEn?: string;
   notableUsage: string;
+  notableUsageEn?: string;
 }

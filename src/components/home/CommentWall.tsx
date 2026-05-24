@@ -3,7 +3,7 @@ import { useI18n } from '../../i18n';
 import styles from './CommentWall.module.css';
 
 interface Comment {
-  id: string; name: string; text: string; time: number; likes: number;
+  id: string; name: string; text: string; time: number; likes: number; location?: string;
 }
 
 const PAGE_SIZE = 8;
@@ -20,9 +20,24 @@ export default function CommentWall() {
   const [loading, setLoading] = useState(false);
   const [adminPw, setAdminPw] = useState('');
   const [showAdmin, setShowAdmin] = useState(false);
+  const [adminOk, setAdminOk] = useState(false);
   const [liked, setLiked] = useState<Set<string>>(() => {
     try { return new Set(JSON.parse(localStorage.getItem('fanren-liked')||'[]')); } catch { return new Set(); }
   });
+  const [userCity, setUserCity] = useState('');
+
+  // 通过 IP 获取城市
+  useEffect(() => {
+    const cached = sessionStorage.getItem('fanren-city');
+    if (cached) { setUserCity(cached); return; }
+    fetch('https://ipapi.co/json/')
+      .then(r => r.json())
+      .then(d => {
+        const city = d.city || d.region || '';
+        if (city) { sessionStorage.setItem('fanren-city', city); setUserCity(city); }
+      })
+      .catch(() => {});
+  }, []);
 
   const updateLiked = (s: Set<string>) => {
     setLiked(s);
@@ -47,7 +62,7 @@ export default function CommentWall() {
     const res = await fetch('/api/comments', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text: txt, name: name.trim() }),
+      body: JSON.stringify({ text: txt, name: name.trim(), location: userCity }),
     });
     const data = await res.json();
     if (data.ok) { setText(''); setName(''); setPage(1); }
@@ -65,9 +80,10 @@ export default function CommentWall() {
   };
 
   const del = async (id: string) => {
-    if (!adminPw) return;
-    await fetch(`/api/comments?id=${id}&pw=${encodeURIComponent(adminPw)}`, { method: 'DELETE' });
-    fetchComments();
+    if (!adminOk) return;
+    const res = await fetch(`/api/comments?id=${id}&pw=${encodeURIComponent(adminPw)}`, { method: 'DELETE' });
+    const data = await res.json();
+    if (data.ok) fetchComments();
   };
 
   const fmt = (ts: number) => {
@@ -78,7 +94,7 @@ export default function CommentWall() {
     const day = bj.getDate();
     const h = String(bj.getHours()).padStart(2, '0');
     const min = String(bj.getMinutes()).padStart(2, '0');
-    return `${y}/${m}/${day} ${h}:${min}${t('comments.beijing')}`;
+    return `${y}/${m}/${day} ${h}:${min}`;
   };
 
   const pageNumbers = () => {
@@ -119,12 +135,12 @@ export default function CommentWall() {
             <div key={c.id} className={styles.item}>
               <div className={styles.itemHeader}>
                 <span className={styles.name}>{c.name}</span>
-                <span className={styles.time}>{fmt(c.time)}</span>
+              <span className={styles.time}>{fmt(c.time)} {c.location && <span className={styles.location}>({c.location})</span>}</span>
               </div>
               <p className={styles.text}>{c.text}</p>
               <div className={styles.meta}>
                 <button className={`${styles.likeBtn} ${liked.has(c.id)?styles.liked:''}`} onClick={()=>toggleLike(c.id)}>✦ {c.likes}</button>
-                {showAdmin && <button className={styles.delBtn} onClick={()=>del(c.id)} title="Delete">✕</button>}
+                {adminOk && <button className={styles.delBtn} onClick={()=>del(c.id)} title="Delete">✕</button>}
               </div>
             </div>
           ))}
@@ -145,11 +161,33 @@ export default function CommentWall() {
 
         <div className={styles.adminRow}>
           {!showAdmin ? (
-            <button className={styles.adminToggle} onClick={()=>setShowAdmin(true)}>{t('comments.admin')}</button>
+            <button className={styles.adminToggle} onClick={() => setShowAdmin(true)}>
+              {t('comments.admin')}
+            </button>
           ) : (
             <div className={styles.adminBox}>
-              <input className={styles.adminInput} value={adminPw} onChange={e=>setAdminPw(e.target.value)} placeholder={t('comments.adminPw')} type="password" />
-              <button className={styles.adminHide} onClick={()=>{setShowAdmin(false);setAdminPw('');}}>{t('comments.adminClose')}</button>
+              <input
+                className={styles.adminInput}
+                value={adminPw}
+                onChange={e => setAdminPw(e.target.value)}
+                placeholder={t('comments.adminPw')}
+                type="password"
+                disabled={adminOk}
+                onKeyDown={e => e.key === 'Enter' && !adminOk && setAdminOk(true)}
+              />
+              {!adminOk ? (
+                <button className={styles.adminUnlock} onClick={() => setAdminOk(true)}>
+                  ✓
+                </button>
+              ) : (
+                <span className={styles.adminUnlocked}>解锁</span>
+              )}
+              <button
+                className={styles.adminHide}
+                onClick={() => { setShowAdmin(false); setAdminPw(''); setAdminOk(false); }}
+              >
+                {t('comments.adminClose')}
+              </button>
             </div>
           )}
         </div>

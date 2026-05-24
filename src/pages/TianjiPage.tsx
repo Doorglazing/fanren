@@ -8,7 +8,7 @@ import styles from './TianjiPage.module.css';
 
 export default function TianjiPage() {
   const [result, setResult] = useState<FortuneEntry | null>(null);
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
 
   useEffect(() => {
     const root = document.getElementById('root');
@@ -94,7 +94,7 @@ export default function TianjiPage() {
               <div className={styles.sealRing} style={{ borderColor: result.color }}>
                 <span className={styles.signLabel}>{levelLabel(result.level)}</span>
                 <span className={styles.fortuneName} style={{ color: result.color }}>
-                  {result.name}
+                  {lang === 'en' ? result.nameEn : result.name}
                 </span>
               </div>
             </div>
@@ -105,8 +105,8 @@ export default function TianjiPage() {
                 <span className={styles.storyIcon}>✦</span>
                 <span className={styles.storyLine} />
               </div>
-              <h3 className={styles.storyTitle}>{result.story.title}</h3>
-              <p className={styles.storyText}>{result.story.text}</p>
+              <h3 className={styles.storyTitle}>{lang === 'en' ? result.storyEn.title : result.story.title}</h3>
+              <p className={styles.storyText}>{lang === 'en' ? result.storyEn.text : result.story.text}</p>
             </div>
 
             <button className={styles.drawAgainBtn} onClick={handleDraw} disabled={drawing}>
@@ -162,8 +162,8 @@ export default function TianjiPage() {
             {fortuneList.map((f) => (
               <div key={f.name} className={styles.refItem}>
                 <span className={styles.refDot} style={{ background: f.color }} />
-                <span className={styles.refName}>{f.name}</span>
-                <span className={styles.refDesc}>{f.desc}</span>
+                <span className={styles.refName}>{lang === 'en' ? f.nameEn : f.name}</span>
+                <span className={styles.refDesc}>{lang === 'en' ? f.descEn : f.desc}</span>
               </div>
             ))}
           </div>

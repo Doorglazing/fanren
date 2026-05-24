@@ -136,6 +136,7 @@ export const en: Record<string, string> = {
   'detail.ending': 'Ending',
   'detail.affiliation': 'Affiliation',
   'detail.firstAppear': 'First Appearance',
+  'detail.realm': 'Realm',
   'detail.statusAlive': 'Alive',
   'detail.statusDeparted': 'Departed',
   'detail.statusDeceased': 'Deceased',
@@ -201,4 +202,13 @@ export const en: Record<string, string> = {
   'starchart.hint': 'Drag to rotate · Scroll to zoom · Click a star for details',
   'starchart.ending': 'Ending',
   'starchart.relations': 'Relations',
+
+  // ─── Artifact Grades ───
+  'grade.凡器': 'Mortal Artifact',
+  'grade.法器': 'Magical Instrument',
+  'grade.灵器': 'Spirit Artifact',
+  'grade.法宝': 'Magical Treasure',
+  'grade.古宝': 'Ancient Treasure',
+  'grade.通天灵宝': 'Heavenly Spirit Treasure',
+  'grade.灵材': 'Spirit Material',
 };

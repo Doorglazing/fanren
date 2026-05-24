@@ -6,7 +6,7 @@ import styles from './TimelinePage.module.css';
 
 export default function TimelinePage() {
   const [mode, setMode] = useState<'timeline' | 'image'>('timeline');
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
 
   useEffect(() => {
     const root = document.getElementById('root');
@@ -45,7 +45,7 @@ export default function TimelinePage() {
       {mode === 'image' && (
         <div className={styles.imageView}>
           <img
-            src="/images/bg/timeline-full.png"
+            src={lang === 'en' ? '/images/bg/timeline-full-en.png' : '/images/bg/timeline-full.png'}
             alt={t('timeline.alt')}
             className={styles.fullImage}
           />

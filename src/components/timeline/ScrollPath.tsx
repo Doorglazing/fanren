@@ -41,7 +41,7 @@ function smoothPath(events: TimelineEvent[]): string {
 export default function ScrollPath() {
   const [sel, setSel] = useState<string | null>(null);
   const [hovered, setHovered] = useState<string | null>(null);
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const sorted = [...timelineEvents].sort((a, b) => a.sortOrder - b.sortOrder);
   const pathD = smoothPath(timelineEvents);
   const selected = timelineEvents.find((e) => e.id === sel) || null;
@@ -76,6 +76,8 @@ export default function ScrollPath() {
             const lx = cx + (right ? 4 : -4);
             const ta = right ? 'start' : 'end';
             const active = isSel || isHov;
+            const title = lang === 'en' && e.titleEn ? e.titleEn : e.title;
+            const timeLabel = lang === 'en' && e.timeLabelEn ? e.timeLabelEn : e.timeLabel;
 
             return (
               <g
@@ -91,8 +93,8 @@ export default function ScrollPath() {
                 <circle cx={cx} cy={cy} r={active ? 1.5 : 1} fill="rgba(0,0,0,0.5)" stroke={color} strokeWidth={active ? 0.35 : 0.22}/>
                 <circle cx={cx} cy={cy} r={active ? 0.6 : 0.35} fill={color} filter="url(#n1)"/>
 
-                <text x={lx} y={cy - 1.2} fill={active ? color : '#fff'} stroke="rgba(0,0,0,0.6)" strokeWidth="0.45" paintOrder="stroke fill" fontFamily="var(--font-display)" fontSize={active ? 2.8 : 2.4} fontWeight="bold" textAnchor={ta} letterSpacing="0.03em">{e.title}</text>
-                <text x={lx} y={cy + 2.8} fill={active ? '#fff' : 'rgba(255,255,255,0.7)'} stroke="rgba(0,0,0,0.5)" strokeWidth="0.35" paintOrder="stroke fill" fontFamily="var(--font-display)" fontSize="1.5" textAnchor={ta} letterSpacing="0.04em">{e.timeLabel}</text>
+                <text x={lx} y={cy - 1.2} fill={active ? color : '#fff'} stroke="rgba(0,0,0,0.6)" strokeWidth="0.45" paintOrder="stroke fill" fontFamily="var(--font-display)" fontSize={active ? 2.8 : 2.4} fontWeight="bold" textAnchor={ta} letterSpacing="0.03em">{title}</text>
+                <text x={lx} y={cy + 2.8} fill={active ? '#fff' : 'rgba(255,255,255,0.7)'} stroke="rgba(0,0,0,0.5)" strokeWidth="0.35" paintOrder="stroke fill" fontFamily="var(--font-display)" fontSize="1.5" textAnchor={ta} letterSpacing="0.04em">{timeLabel}</text>
                 <text x={lx} y={cy + 5} fill={color} stroke="rgba(0,0,0,0.45)" strokeWidth="0.3" paintOrder="stroke fill" fontFamily="var(--font-display)" fontSize="1.3" fontWeight="bold" textAnchor={ta} letterSpacing="0.03em">{typeLabel}</text>
               </g>
             );

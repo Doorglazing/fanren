@@ -164,7 +164,7 @@ function StarField() {
 }
 
 // ─── Han Li - central sun ───
-function HanLiStar() {
+function HanLiStar({ lang }: { lang: string }) {
   const cfg = getPlanet(characters.find(c=>c.id==='han-li')!);
   const tex = getTexture(cfg);
   const mesh = useRef<THREE.Mesh>(null);
@@ -184,19 +184,20 @@ function HanLiStar() {
         <meshBasicMaterial color="#e8d48b" transparent opacity={0.06} />
       </mesh>
       <Billboard position={[0, cfg.size+0.8, 0]}>
-        <Text fontSize={0.65} color="#e8d48b" anchorX="center" anchorY="middle" outlineWidth={0.04} outlineColor="#000">韩立</Text>
+        <Text fontSize={0.65} color="#e8d48b" anchorX="center" anchorY="middle" outlineWidth={0.04} outlineColor="#000">{lang === 'en' ? 'Han Li' : '韩立'}</Text>
       </Billboard>
     </group>
   );
 }
 
 // ─── Orbiting character planet ───
-function CharPlanet({ char, angle, radius, yOff, onClick }: { char:Character; angle:number; radius:number; yOff:number; onClick:()=>void }) {
+function CharPlanet({ char, angle, radius, yOff, onClick, lang }: { char:Character; angle:number; radius:number; yOff:number; onClick:()=>void; lang:string }) {
   const cfg = getPlanet(char);
   const tex = getTexture(cfg);
   const mesh = useRef<THREE.Mesh>(null);
   const x = Math.cos(angle) * radius;
   const z = Math.sin(angle) * radius;
+  const displayName = lang === 'en' && char.nameEn ? char.nameEn : char.name;
   useFrame(() => { if(mesh.current) mesh.current.rotation.y += 0.003; });
   return (
     <group position={[x, yOff, z]} onClick={(e)=>{e.stopPropagation();onClick();}}>
@@ -205,7 +206,7 @@ function CharPlanet({ char, angle, radius, yOff, onClick }: { char:Character; an
         <meshStandardMaterial map={tex} roughness={0.5} metalness={0.1} />
       </mesh>
       <Billboard position={[0, cfg.size+0.45, 0]}>
-        <Text fontSize={0.28} color="#ffffff" anchorX="center" anchorY="middle" outlineWidth={0.03} outlineColor="#000000">{char.name}</Text>
+        <Text fontSize={0.28} color="#ffffff" anchorX="center" anchorY="middle" outlineWidth={0.03} outlineColor="#000000">{displayName}</Text>
       </Billboard>
     </group>
   );
@@ -218,7 +219,7 @@ function OrbitRing({ radius, color }: { radius:number; color:string }) {
 }
 
 // ─── Scene ───
-function Scene({ onSelect }: { onSelect:(c:Character)=>void }) {
+function Scene({ onSelect, lang }: { onSelect:(c:Character)=>void; lang:string }) {
   const others = characters.filter(c=>c.id!=='han-li');
 
   const ringMap: Record<string, { radius: number; yBase: number; spread: number }> = {
@@ -251,7 +252,7 @@ function Scene({ onSelect }: { onSelect:(c:Character)=>void }) {
       <pointLight position={[12,-3,6]} intensity={1.2} color="#4466aa" />
       <pointLight position={[-10,2,-8]} intensity={0.8} color="#664455" />
       <StarField />
-      <HanLiStar />
+      <HanLiStar lang={lang} />
       <OrbitRing radius={10} color="#c4a84b" />
       <OrbitRing radius={16} color="#4466aa" />
       <OrbitRing radius={22} color="#88aacc" />
@@ -261,7 +262,7 @@ function Scene({ onSelect }: { onSelect:(c:Character)=>void }) {
           const angle = (i / chars.length) * Math.PI * 2 + (Math.random() * 0.3 - 0.15);
           const radius = cfg.radius + (Math.random() - 0.5) * cfg.spread;
           const yOff = cfg.yBase + (Math.random() - 0.5) * cfg.spread;
-          return <CharPlanet key={c.id} char={c} angle={angle} radius={radius} yOff={yOff} onClick={()=>onSelect(c)}/>;
+          return <CharPlanet key={c.id} char={c} angle={angle} radius={radius} yOff={yOff} onClick={()=>onSelect(c)} lang={lang}/>;
         });
       })}
     </>
@@ -271,21 +272,30 @@ function Scene({ onSelect }: { onSelect:(c:Character)=>void }) {
 // ─── Page ───
 export default function StarChartPage() {
   const [selected,setSelected]=useState<Character|null>(null);
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
+  const aff = selected && lang === 'en' && selected.affiliationEn ? selected.affiliationEn : selected?.affiliation;
+  const selName = selected && lang === 'en' && selected.nameEn ? selected.nameEn : selected?.name;
+  const desc = selected && lang === 'en' && selected.descriptionEn ? selected.descriptionEn : selected?.description;
+  const end = selected && lang === 'en' && selected.endingEn ? selected.endingEn : selected?.ending;
+  const relLang = (r: { targetName: string; targetNameEn?: string; relation: string; relationEn?: string }) => {
+    const tName = lang === 'en' && r.targetNameEn ? r.targetNameEn : r.targetName;
+    const rel = lang === 'en' && r.relationEn ? r.relationEn : r.relation;
+    return `${tName} · ${rel}`;
+  };
   return (
     <div className={styles.page}>
       <Canvas className={styles.canvas} camera={{position:[0,6,20],fov:48}} gl={{antialias:true, alpha:true}}>
-        <Suspense fallback={null}><Scene onSelect={setSelected}/></Suspense>
+        <Suspense fallback={null}><Scene onSelect={setSelected} lang={lang}/></Suspense>
       </Canvas>
       {selected&&(
         <div className={styles.detailPanel}>
           <button className={styles.closeBtn} onClick={()=>setSelected(null)}>×</button>
-          <h2 className={styles.detailName}>{selected.name}</h2>
-          <p className={styles.detailAff}>{selected.affiliation}</p>
+          <h2 className={styles.detailName}>{selName}</h2>
+          <p className={styles.detailAff}>{aff}</p>
           <div className={styles.detailDivider}/>
-          <p className={styles.detailDesc}>{selected.description}</p>
-          <div className={styles.detailSection}><strong>{t('starchart.ending')}</strong><p>{selected.ending}</p></div>
-          {selected.relations.length>0&&<div className={styles.detailSection}><strong>{t('starchart.relations')}</strong>{selected.relations.map(r=><p key={r.targetId} className={styles.relItem}>{r.targetName} · {r.relation}</p>)}</div>}
+          <p className={styles.detailDesc}>{desc}</p>
+          <div className={styles.detailSection}><strong>{t('starchart.ending')}</strong><p>{end}</p></div>
+          {selected.relations.length>0&&<div className={styles.detailSection}><strong>{t('starchart.relations')}</strong>{selected.relations.map(r=><p key={r.targetId} className={styles.relItem}>{relLang(r)}</p>)}</div>}
         </div>
       )}
       <div className={styles.hint}>{t('starchart.hint')}</div>

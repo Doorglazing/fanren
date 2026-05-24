@@ -9,7 +9,7 @@ import styles from './CharacterDetailPage.module.css';
 export default function CharacterDetailPage() {
   const { id } = useParams<{ id: string }>();
   const character = characters.find((c) => c.id === id);
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
 
   if (!character) {
     return (
@@ -20,7 +20,17 @@ export default function CharacterDetailPage() {
     );
   }
 
-  const { name, aliases, affiliation, description, personality, techniques, relations, firstAppearChapter, status, ending } = character;
+  const { name, nameEn, aliases, aliasesEn, affiliation, description, personality, techniques, relations, firstAppearChapter, status, ending } = character;
+  const displayName = lang === 'en' && nameEn ? nameEn : name;
+  const displayAliases = lang === 'en' && aliasesEn && aliasesEn.length > 0 ? aliasesEn : aliases;
+  const aff = lang === 'en' && character.affiliationEn ? character.affiliationEn : affiliation;
+  const desc = lang === 'en' && character.descriptionEn ? character.descriptionEn : description;
+  const pers = lang === 'en' && character.personalityEn ? character.personalityEn : personality;
+  const end = lang === 'en' && character.endingEn ? character.endingEn : ending;
+  const chapter = lang === 'en' && character.firstAppearChapterEn ? character.firstAppearChapterEn : firstAppearChapter;
+  const realm = lang === 'en' && character.realmEn ? character.realmEn : character.realm;
+  const techs = lang === 'en' && character.techniquesEn && character.techniquesEn.length > 0 ? character.techniquesEn : techniques;
+  const aliasSep = lang === 'en' ? ', ' : '、';
 
   const statusMap: Record<string, string> = {
     alive: t('detail.statusAlive'),
@@ -36,24 +46,25 @@ export default function CharacterDetailPage() {
       <div className={styles.profile}>
         <div className={styles.portrait}>
           {character.imageUrl ? (
-            <img src={character.imageUrl} alt={name} className={styles.portraitImg} />
+            <img src={character.imageUrl} alt={displayName} className={styles.portraitImg} />
           ) : (
-            <div className={styles.portraitEmpty}>{name[0]}</div>
+            <div className={styles.portraitEmpty}>{displayName[0]}</div>
           )}
         </div>
         <div className={styles.main}>
           <div className={styles.head}>
             <div>
-              <h1 className={styles.name}>{name}</h1>
-              {aliases.length > 0 && <p className={styles.aliases}>{t('characters.aka')}{aliases.join('、')}</p>}
+              <h1 className={styles.name}>{displayName}</h1>
+              {displayAliases.length > 0 && <p className={styles.aliases}>{t('characters.aka')}{displayAliases.join(aliasSep)}</p>}
             </div>
             <span className={`${styles.status} ${styles[statusClass[status]]}`}>
               {statusMap[status]}
             </span>
           </div>
           <div className={styles.meta}>
-            <span className={styles.metaItem}><strong>{t('detail.affiliation')}</strong>{affiliation}</span>
-            <span className={styles.metaItem}><strong>{t('detail.firstAppear')}</strong>{firstAppearChapter}</span>
+            <span className={styles.metaItem}><strong>{t('detail.affiliation')}</strong>{aff}</span>
+            <span className={styles.metaItem}><strong>{t('detail.firstAppear')}</strong>{chapter}</span>
+            <span className={styles.metaItem}><strong>{t('detail.realm')}</strong>{realm}</span>
           </div>
         </div>
       </div>
@@ -61,14 +72,14 @@ export default function CharacterDetailPage() {
       <ScrollReveal>
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>{t('detail.intro')}</h2>
-          <p className={styles.text}>{description}</p>
+          <p className={styles.text}>{desc}</p>
         </div>
       </ScrollReveal>
 
       <ScrollReveal>
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>{t('detail.personality')}</h2>
-          <p className={styles.text}>{personality}</p>
+          <p className={styles.text}>{pers}</p>
         </div>
       </ScrollReveal>
 
@@ -77,7 +88,7 @@ export default function CharacterDetailPage() {
           <div className={styles.section}>
             <h2 className={styles.sectionTitle}>{t('detail.techniques')}</h2>
             <div className={styles.tags}>
-              {techniques.map((tech, index) => (
+              {techs.map((tech, index) => (
                 <span key={index} className={styles.tag}>{tech}</span>
               ))}
             </div>
@@ -88,7 +99,7 @@ export default function CharacterDetailPage() {
       <ScrollReveal>
         <div className={`${styles.section} ${styles.endingSection}`}>
           <h2 className={styles.sectionTitle}>{t('detail.ending')}</h2>
-          <p className={styles.text}>{ending}</p>
+          <p className={styles.text}>{end}</p>
         </div>
       </ScrollReveal>
 
