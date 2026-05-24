@@ -1,12 +1,14 @@
 import { useState, useCallback, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useI18n } from '../i18n';
 import { drawFortune, fortuneList, type FortuneEntry } from '../data/tianji';
 import ScrollReveal from '../components/common/ScrollReveal';
 import styles from './TianjiPage.module.css';
 
 export default function TianjiPage() {
   const [result, setResult] = useState<FortuneEntry | null>(null);
+  const { t, lang } = useI18n();
 
   useEffect(() => {
     const root = document.getElementById('root');
@@ -38,11 +40,11 @@ export default function TianjiPage() {
   }, [drawing]);
 
   const levelLabel = (level: number) => {
-    if (level <= 1) return '上上签';
-    if (level <= 3) return '吉签';
-    if (level === 4) return '平签';
-    if (level <= 6) return '下签';
-    return '凶签';
+    if (level <= 1) return t('tianji.level.1');
+    if (level <= 3) return t('tianji.level.3');
+    if (level === 4) return t('tianji.level.4');
+    if (level <= 6) return t('tianji.level.6');
+    return t('tianji.level.7');
   };
 
   return (
@@ -50,8 +52,8 @@ export default function TianjiPage() {
       {video}
       <ScrollReveal>
         <div className={styles.header}>
-          <h1 className={styles.title}>天机阁</h1>
-          <p className={styles.subtitle}>窥探天机，知晓今日运势</p>
+          <h1 className={styles.title}>{t('tianji.title')}</h1>
+          <p className={styles.subtitle}>{t('tianji.subtitle')}</p>
           <div className={styles.divider}>
             <span className={styles.dividerLine} />
             <span className={styles.dividerDot} />
@@ -60,7 +62,6 @@ export default function TianjiPage() {
         </div>
       </ScrollReveal>
 
-      {/* Fortune result */}
       <AnimatePresence mode="wait">
         {result ? (
           <motion.div
@@ -109,7 +110,7 @@ export default function TianjiPage() {
             </div>
 
             <button className={styles.drawAgainBtn} onClick={handleDraw} disabled={drawing}>
-              再窥一次天机
+              {t('tianji.drawAgain')}
             </button>
           </motion.div>
         ) : drawing ? (
@@ -123,7 +124,7 @@ export default function TianjiPage() {
             <div className={styles.inkSpread}>
               <div className={styles.inkCircle} />
             </div>
-            <p className={styles.drawingText}>天机推演中…</p>
+            <p className={styles.drawingText}>{t('tianji.drawing')}</p>
           </motion.div>
         ) : (
           <motion.div
@@ -140,29 +141,23 @@ export default function TianjiPage() {
                 <text x="60" y="80" textAnchor="middle" fill="var(--vermillion)" fontFamily="var(--font-display)" fontSize="18" opacity="0.4">机</text>
               </svg>
             </div>
-            <p className={styles.emptyText}>天机不可轻泄，道心不可妄动</p>
-            <p className={styles.emptyHint}>按下按钮，窥探属于你的今日运势</p>
+            <p className={styles.emptyText}>{t('tianji.emptyText')}</p>
+            <p className={styles.emptyHint}>{t('tianji.emptyHint')}</p>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Draw button */}
       <div className={styles.btnArea}>
-        <button
-          className={styles.drawBtn}
-          onClick={handleDraw}
-          disabled={drawing}
-        >
+        <button className={styles.drawBtn} onClick={handleDraw} disabled={drawing}>
           <span className={styles.btnIcon}>☯</span>
-          窥探今日天机
+          {t('tianji.draw')}
           <span className={styles.btnIcon}>☯</span>
         </button>
       </div>
 
-      {/* All fortunes reference */}
       <ScrollReveal>
         <div className={styles.reference}>
-          <h3 className={styles.refTitle}>运势一览</h3>
+          <h3 className={styles.refTitle}>{t('tianji.reference')}</h3>
           <div className={styles.refGrid}>
             {fortuneList.map((f) => (
               <div key={f.name} className={styles.refItem}>

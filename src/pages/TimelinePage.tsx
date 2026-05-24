@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { useI18n } from '../i18n';
 import ScrollPath from '../components/timeline/ScrollPath';
 import styles from './TimelinePage.module.css';
 
 export default function TimelinePage() {
   const [mode, setMode] = useState<'timeline' | 'image'>('timeline');
+  const { t } = useI18n();
 
   useEffect(() => {
     const root = document.getElementById('root');
@@ -27,17 +29,15 @@ export default function TimelinePage() {
   return (
     <div className={styles.page}>
       {video}
-
-      {/* Toggle */}
       <div className={styles.toggleBar}>
         <button
           className={`${styles.toggleBtn} ${mode === 'timeline' ? styles.toggleActive : ''}`}
           onClick={() => setMode('timeline')}
-        >时间轴</button>
+        >{t('timeline.toggleTimeline')}</button>
         <button
           className={`${styles.toggleBtn} ${mode === 'image' ? styles.toggleActive : ''}`}
           onClick={() => setMode('image')}
-        >一图流</button>
+        >{t('timeline.toggleImage')}</button>
       </div>
 
       {mode === 'timeline' && <ScrollPath />}
@@ -46,7 +46,7 @@ export default function TimelinePage() {
         <div className={styles.imageView}>
           <img
             src="/images/bg/timeline-full.png"
-            alt="凡人修仙传时间线"
+            alt={t('timeline.alt')}
             className={styles.fullImage}
           />
         </div>

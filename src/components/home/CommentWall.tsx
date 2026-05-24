@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useI18n } from '../../i18n';
 import styles from './CommentWall.module.css';
 
 interface Comment {
@@ -8,6 +9,7 @@ interface Comment {
 const PAGE_SIZE = 8;
 
 export default function CommentWall() {
+  const { t } = useI18n();
   const [comments, setComments] = useState<Comment[]>([]);
   const [total, setTotal] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
@@ -36,25 +38,19 @@ export default function CommentWall() {
   }, [sort, page]);
 
   useEffect(() => { fetchComments(); }, [fetchComments]);
-
-  // Reset to page 1 when sort changes
   useEffect(() => { setPage(1); }, [sort]);
 
   const submit = async () => {
-    const t = text.trim().slice(0, 100);
-    if (!t || loading) return;
+    const txt = text.trim().slice(0, 100);
+    if (!txt || loading) return;
     setLoading(true);
     const res = await fetch('/api/comments', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text: t, name: name.trim() }),
+      body: JSON.stringify({ text: txt, name: name.trim() }),
     });
     const data = await res.json();
-    if (data.ok) {
-      setText('');
-      setName('');
-      setPage(1);
-    }
+    if (data.ok) { setText(''); setName(''); setPage(1); }
     setLoading(false);
     fetchComments();
   };
@@ -82,10 +78,9 @@ export default function CommentWall() {
     const day = bj.getDate();
     const h = String(bj.getHours()).padStart(2, '0');
     const min = String(bj.getMinutes()).padStart(2, '0');
-    return `${y}/${m}/${day} ${h}:${min}（北京）`;
+    return `${y}/${m}/${day} ${h}:${min}${t('comments.beijing')}`;
   };
 
-  // Generate page numbers for pagination
   const pageNumbers = () => {
     const pages: (number | '...')[] = [];
     if (totalPages <= 7) {
@@ -104,19 +99,19 @@ export default function CommentWall() {
     <section className={styles.section}>
       <div className={styles.inner}>
         <div className={styles.header}>
-          <h2 className={styles.title}>道友留言</h2>
-          <span className={styles.total}>{total} 条留言</span>
-          <button className={`${styles.sortBtn} ${sort==='time'?styles.sortActive:''}`} onClick={()=>setSort('time')}>最新</button>
-          <button className={`${styles.sortBtn} ${sort==='likes'?styles.sortActive:''}`} onClick={()=>setSort('likes')}>最热</button>
+          <h2 className={styles.title}>{t('comments.title')}</h2>
+          <span className={styles.total}>{total} {t('comments.total')}</span>
+          <button className={`${styles.sortBtn} ${sort==='time'?styles.sortActive:''}`} onClick={()=>setSort('time')}>{t('comments.latest')}</button>
+          <button className={`${styles.sortBtn} ${sort==='likes'?styles.sortActive:''}`} onClick={()=>setSort('likes')}>{t('comments.hottest')}</button>
         </div>
 
         <div className={styles.inputRow}>
-          <input className={styles.nameInput} value={name} onChange={e => setName(e.target.value)} maxLength={8} placeholder="道号（可选，8字内）" />
+          <input className={styles.nameInput} value={name} onChange={e => setName(e.target.value)} maxLength={8} placeholder={t('comments.namePlaceholder')} />
           <div className={styles.textInputWrap}>
-            <input className={styles.input} value={text} onChange={e => setText(e.target.value)} maxLength={100} placeholder="留下你的修仙感悟…（最多100字）" onKeyDown={e => e.key === 'Enter' && submit()} />
+            <input className={styles.input} value={text} onChange={e => setText(e.target.value)} maxLength={100} placeholder={t('comments.textPlaceholder')} onKeyDown={e => e.key === 'Enter' && submit()} />
             <span className={styles.charCount}>{text.length}/100</span>
           </div>
-          <button className={styles.sendBtn} onClick={submit} disabled={loading}>{loading ? '发送中…' : '发送传音符'}</button>
+          <button className={styles.sendBtn} onClick={submit} disabled={loading}>{loading ? t('comments.sending') : t('comments.send')}</button>
         </div>
 
         <div className={styles.list}>
@@ -129,33 +124,32 @@ export default function CommentWall() {
               <p className={styles.text}>{c.text}</p>
               <div className={styles.meta}>
                 <button className={`${styles.likeBtn} ${liked.has(c.id)?styles.liked:''}`} onClick={()=>toggleLike(c.id)}>✦ {c.likes}</button>
-                {showAdmin && <button className={styles.delBtn} onClick={()=>del(c.id)} title="删除">✕</button>}
+                {showAdmin && <button className={styles.delBtn} onClick={()=>del(c.id)} title="Delete">✕</button>}
               </div>
             </div>
           ))}
-          {comments.length===0 && <p className={styles.empty}>暂无留言，留下第一条修仙感悟吧 ✦</p>}
+          {comments.length===0 && <p className={styles.empty}>{t('comments.empty')}</p>}
         </div>
 
-        {/* Pagination */}
         {totalPages > 1 && (
           <div className={styles.pagination}>
-            <button className={styles.pageBtn} onClick={()=>setPage(p=>Math.max(1,p-1))} disabled={page===1}>‹ 上一页</button>
+            <button className={styles.pageBtn} onClick={()=>setPage(p=>Math.max(1,p-1))} disabled={page===1}>‹ {t('comments.prev')}</button>
             {pageNumbers().map((p,i) =>
               p === '...'
                 ? <span key={`dot-${i}`} className={styles.pageDot}>…</span>
                 : <button key={p} className={`${styles.pageBtn} ${p===page?styles.pageActive:''}`} onClick={()=>setPage(p as number)}>{p}</button>
             )}
-            <button className={styles.pageBtn} onClick={()=>setPage(p=>Math.min(totalPages,p+1))} disabled={page===totalPages}>下一页 ›</button>
+            <button className={styles.pageBtn} onClick={()=>setPage(p=>Math.min(totalPages,p+1))} disabled={page===totalPages}>{t('comments.next')} ›</button>
           </div>
         )}
 
         <div className={styles.adminRow}>
           {!showAdmin ? (
-            <button className={styles.adminToggle} onClick={()=>setShowAdmin(true)}>🔑 管理</button>
+            <button className={styles.adminToggle} onClick={()=>setShowAdmin(true)}>{t('comments.admin')}</button>
           ) : (
             <div className={styles.adminBox}>
-              <input className={styles.adminInput} value={adminPw} onChange={e=>setAdminPw(e.target.value)} placeholder="管理员密码" type="password" />
-              <button className={styles.adminHide} onClick={()=>{setShowAdmin(false);setAdminPw('');}}>关闭</button>
+              <input className={styles.adminInput} value={adminPw} onChange={e=>setAdminPw(e.target.value)} placeholder={t('comments.adminPw')} type="password" />
+              <button className={styles.adminHide} onClick={()=>{setShowAdmin(false);setAdminPw('');}}>{t('comments.adminClose')}</button>
             </div>
           )}
         </div>

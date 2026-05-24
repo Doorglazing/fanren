@@ -1,3 +1,4 @@
+import { useI18n } from '../../i18n';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import { useCountUp } from '../../hooks/useCountUp';
 import { siteStatistics } from '../../data/statistics';
@@ -5,7 +6,13 @@ import SectionTitle from '../common/SectionTitle';
 import ScrollReveal from '../common/ScrollReveal';
 import styles from './StatisticsPanel.module.css';
 
-function formatNumber(num: number): string {
+function formatNumber(num: number, lang: string): string {
+  if (lang === 'en') {
+    if (num >= 1_000_000_000) return `${(num / 1_000_000_000).toFixed(1)}B`;
+    if (num >= 1_000_000) return `${(num / 1_000_000).toFixed(0)}M`;
+    if (num >= 1_000) return `${(num / 1_000).toFixed(0)}K`;
+    return num.toLocaleString();
+  }
   if (num >= 1_0000_0000) return `${(num / 1_0000_0000).toFixed(1)}亿`;
   if (num >= 1_0000) return `${(num / 1_0000).toFixed(0)}万`;
   return num.toLocaleString();
@@ -22,7 +29,7 @@ interface StatCardProps {
 function StatCard({ label, value, suffix = '', formatter, delay = 0 }: StatCardProps) {
   const { ref, isVisible } = useScrollReveal(0.3);
   const count = useCountUp(value, 2000, isVisible);
-  const display = formatter ? formatter(count) : formatNumber(count);
+  const display = formatter ? formatter(count) : formatNumber(count, 'zh');
 
   return (
     <div ref={ref} className={styles.card} style={{ animationDelay: `${delay}s` }}>
@@ -36,20 +43,23 @@ function StatCard({ label, value, suffix = '', formatter, delay = 0 }: StatCardP
 }
 
 export default function StatisticsPanel() {
+  const { t, lang } = useI18n();
   const stats = siteStatistics;
+
+  const fmt = (n: number) => formatNumber(n, lang);
 
   return (
     <section className={styles.section}>
       <ScrollReveal>
-        <SectionTitle title="数据概览" subtitle="B站国创现象级作品" />
+        <SectionTitle title={t('stats.title')} subtitle={t('stats.subtitle')} />
       </ScrollReveal>
       <div className={styles.grid}>
-        <StatCard label="系列累计播放量" value={stats.bilibiliSeriesViews} delay={0} />
-        <StatCard label="B站追番人数" value={stats.bilibiliFavorites} delay={0.15} />
-        <StatCard label="B站评分" value={stats.bilibiliRating * 10} formatter={(n) => (n / 10).toFixed(1)} suffix="/ 10.0" delay={0.3} />
-        <StatCard label="豆瓣评分" value={stats.doubanRating * 10} formatter={(n) => (n / 10).toFixed(1)} suffix="/ 10.0" delay={0.45} />
-        <StatCard label="已播出集数" value={stats.totalEpisodes} formatter={(n) => `${n}`} suffix="集" delay={0.6} />
-        <StatCard label={`开播至今 · ${stats.startDate}`} value={0} formatter={() => stats.duration} suffix="" delay={0.75} />
+        <StatCard label={t('stats.views')} value={stats.bilibiliSeriesViews} formatter={fmt} delay={0} />
+        <StatCard label={t('stats.favorites')} value={stats.bilibiliFavorites} formatter={fmt} delay={0.15} />
+        <StatCard label={t('stats.biliRating')} value={stats.bilibiliRating * 10} formatter={(n) => (n / 10).toFixed(1)} suffix="/ 10.0" delay={0.3} />
+        <StatCard label={t('stats.doubanRating')} value={stats.doubanRating * 10} formatter={(n) => (n / 10).toFixed(1)} suffix="/ 10.0" delay={0.45} />
+        <StatCard label={t('stats.episodes')} value={stats.totalEpisodes} formatter={(n) => `${n}`} suffix={t('stats.episodeSuffix')} delay={0.6} />
+        <StatCard label={`${t('stats.since')} · ${lang === 'en' ? stats.startDateEn : stats.startDate}`} value={0} formatter={() => lang === 'en' ? stats.durationEn : stats.duration} suffix="" delay={0.75} />
       </div>
     </section>
   );

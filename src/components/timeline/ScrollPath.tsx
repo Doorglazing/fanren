@@ -1,14 +1,14 @@
 import { useState } from 'react';
+import { useI18n } from '../../i18n';
 import { timelineEvents } from '../../data/timeline';
 import EventDetailCard from './EventDetailCard';
 import type { TimelineEvent } from '../../types';
-import { EVENT_TYPE_COLORS, EVENT_TYPE_LABELS } from '../../utils/constants';
+import { EVENT_TYPE_COLORS } from '../../utils/constants';
 import styles from './ScrollPath.module.css';
 
 const VB = 100;
 const pos = (e: TimelineEvent) => e.positionPercent;
 
-// ─── Catmull-Rom → Cubic Bezier (guarantees C1-smooth curve) ───
 function smoothPath(events: TimelineEvent[]): string {
   const s = [...events].sort((a, b) => a.sortOrder - b.sortOrder);
   if (s.length < 2) return '';
@@ -23,7 +23,6 @@ function smoothPath(events: TimelineEvent[]): string {
     const p2 = pts[i + 1];
     const p3 = pts[i + 2 >= n ? n - 1 : i + 2];
 
-    // Catmull-Rom tangents with tension 0.5
     const t1x = (p2.x - p0.x) * 0.5;
     const t1y = (p2.y - p0.y) * 0.5;
     const t2x = (p3.x - p1.x) * 0.5;
@@ -42,6 +41,7 @@ function smoothPath(events: TimelineEvent[]): string {
 export default function ScrollPath() {
   const [sel, setSel] = useState<string | null>(null);
   const [hovered, setHovered] = useState<string | null>(null);
+  const { t } = useI18n();
   const sorted = [...timelineEvents].sort((a, b) => a.sortOrder - b.sortOrder);
   const pathD = smoothPath(timelineEvents);
   const selected = timelineEvents.find((e) => e.id === sel) || null;
@@ -60,18 +60,16 @@ export default function ScrollPath() {
             </linearGradient>
           </defs>
 
-          {/* ═══ GLOWING SMOOTH CURVE ═══ */}
           <path d={pathD} fill="none" stroke="url(#fg)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" opacity="0.1" filter="url(#n3)"/>
           <path d={pathD} fill="none" stroke="url(#fg)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" opacity="0.4" filter="url(#n2)"/>
           <path d={pathD} fill="none" stroke="url(#fg)" strokeWidth="0.45" strokeLinecap="round" strokeLinejoin="round" opacity="0.8" filter="url(#n1)"/>
           <path d={pathD} fill="none" stroke="#fff" strokeWidth="0.14" strokeLinecap="round" strokeLinejoin="round" opacity="0.5"/>
 
-          {/* ═══ EVENT NODES ═══ */}
           {sorted.map((e, idx) => {
             const p = pos(e);
             const cx = p.x, cy = p.y;
             const color = EVENT_TYPE_COLORS[e.type] || '#666';
-            const typeLabel = EVENT_TYPE_LABELS[e.type] || '';
+            const typeLabel = t(`etype.${e.type}`);
             const isSel = sel === e.id;
             const isHov = hovered === e.id;
             const right = idx % 2 === 0;
@@ -100,16 +98,15 @@ export default function ScrollPath() {
             );
           })}
 
-          {/* start & end markers */}
           <circle cx={pos(sorted[0]).x} cy={pos(sorted[0]).y} r="2.2" fill="none" stroke="#c03b3b" strokeWidth="0.3" strokeDasharray="0.6 0.5" opacity="0.4"/>
-          <text x={pos(sorted[0]).x - 4} y={pos(sorted[0]).y + 5} fill="#e8d48b" fontFamily="var(--font-display)" fontSize="2" textAnchor="end">起</text>
+          <text x={pos(sorted[0]).x - 4} y={pos(sorted[0]).y + 5} fill="#e8d48b" fontFamily="var(--font-display)" fontSize="2" textAnchor="end">{t('timeline.start')}</text>
           <circle cx={pos(sorted[sorted.length-1]).x} cy={pos(sorted[sorted.length-1]).y} r="2.2" fill="rgba(0,0,0,0.4)" stroke="#c4a84b" strokeWidth="0.4" opacity="0.7" filter="url(#n1)"/>
           <circle cx={pos(sorted[sorted.length-1]).x} cy={pos(sorted[sorted.length-1]).y} r="0.5" fill="#c4a84b"><animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite"/></circle>
-          <text x={pos(sorted[sorted.length-1]).x + 3.5} y={pos(sorted[sorted.length-1]).y - 3} fill="#c4a84b" fontFamily="var(--font-display)" fontSize="2.2" fontWeight="bold">终</text>
+          <text x={pos(sorted[sorted.length-1]).x + 3.5} y={pos(sorted[sorted.length-1]).y - 3} fill="#c4a84b" fontFamily="var(--font-display)" fontSize="2.2" fontWeight="bold">{t('timeline.end')}</text>
         </svg>
       </div>
 
-      <div className={styles.hint}>悬停节点预览 · 点击查看完整故事</div>
+      <div className={styles.hint}>{t('timeline.hint')}</div>
 
       {selected && <EventDetailCard event={selected} onClose={() => setSel(null)} />}
     </div>

@@ -4,6 +4,7 @@ import { OrbitControls, Billboard, Text } from '@react-three/drei';
 import * as THREE from 'three';
 import { characters } from '../data/characters';
 import type { Character } from '../types';
+import { useI18n } from '../i18n';
 import styles from './StarChartPage.module.css';
 
 // ─── Procedural planet texture generator ───
@@ -270,6 +271,7 @@ function Scene({ onSelect }: { onSelect:(c:Character)=>void }) {
 // ─── Page ───
 export default function StarChartPage() {
   const [selected,setSelected]=useState<Character|null>(null);
+  const { t } = useI18n();
   return (
     <div className={styles.page}>
       <Canvas className={styles.canvas} camera={{position:[0,6,20],fov:48}} gl={{antialias:true, alpha:true}}>
@@ -282,11 +284,11 @@ export default function StarChartPage() {
           <p className={styles.detailAff}>{selected.affiliation}</p>
           <div className={styles.detailDivider}/>
           <p className={styles.detailDesc}>{selected.description}</p>
-          <div className={styles.detailSection}><strong>结局</strong><p>{selected.ending}</p></div>
-          {selected.relations.length>0&&<div className={styles.detailSection}><strong>关系</strong>{selected.relations.map(r=><p key={r.targetId} className={styles.relItem}>{r.targetName} · {r.relation}</p>)}</div>}
+          <div className={styles.detailSection}><strong>{t('starchart.ending')}</strong><p>{selected.ending}</p></div>
+          {selected.relations.length>0&&<div className={styles.detailSection}><strong>{t('starchart.relations')}</strong>{selected.relations.map(r=><p key={r.targetId} className={styles.relItem}>{r.targetName} · {r.relation}</p>)}</div>}
         </div>
       )}
-      <div className={styles.hint}>拖拽旋转 · 滚轮缩放 · 点击星辰查看详情</div>
+      <div className={styles.hint}>{t('starchart.hint')}</div>
     </div>
   );
 }

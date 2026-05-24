@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useI18n } from '../../i18n';
 import type { TimelineEvent } from '../../types';
 import { EVENT_TYPE_LABELS, EVENT_TYPE_COLORS } from '../../utils/constants';
 import { characters } from '../../data/characters';
@@ -10,8 +11,9 @@ interface Props {
 }
 
 export default function EventDetailCard({ event, onClose }: Props) {
+  const { t } = useI18n();
   const color = EVENT_TYPE_COLORS[event.type] || '#6b6b6b';
-  const typeLabel = EVENT_TYPE_LABELS[event.type] || '';
+  const typeLabel = t(`etype.${event.type}`);
   const relatedChars = event.relatedCharacterIds
     .map((id) => characters.find((c) => c.id === id))
     .filter((c): c is NonNullable<typeof c> => Boolean(c));
@@ -53,7 +55,7 @@ export default function EventDetailCard({ event, onClose }: Props) {
 
         {relatedChars.length > 0 && (
           <div className={styles.section}>
-            <h4 className={styles.sectionTitle}>相关人物</h4>
+            <h4 className={styles.sectionTitle}>{t('event.relatedChars')}</h4>
             <div className={styles.charList}>
               {relatedChars.map((c) => (
                 <span key={c.id} className={styles.charItem}>
@@ -66,7 +68,7 @@ export default function EventDetailCard({ event, onClose }: Props) {
 
         {relatedArtifacts.length > 0 && (
           <div className={styles.section}>
-            <h4 className={styles.sectionTitle}>关联法宝</h4>
+            <h4 className={styles.sectionTitle}>{t('event.relatedArtifacts')}</h4>
             <div className={styles.artifactList}>
               {relatedArtifacts.map((id) => (
                 <span key={id} className={styles.artifactItem}>
@@ -77,7 +79,7 @@ export default function EventDetailCard({ event, onClose }: Props) {
           </div>
         )}
 
-        <p className={styles.chapter}>出处：{event.chapter}</p>
+        <p className={styles.chapter}>{t('event.source')}{event.chapter}</p>
       </motion.div>
     </motion.div>
   );

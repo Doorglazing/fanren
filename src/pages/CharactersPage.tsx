@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
+import { useI18n } from '../i18n';
 import SectionTitle from '../components/common/SectionTitle';
 import CharacterFilter from '../components/characters/CharacterFilter';
 import CharacterGrid from '../components/characters/CharacterGrid';
@@ -10,6 +11,7 @@ import styles from './CharactersPage.module.css';
 
 export default function CharactersPage() {
   const [tag, setTag] = useState('全部');
+  const { t } = useI18n();
 
   const filtered = useMemo(() => {
     if (tag === '全部') return characters;
@@ -38,9 +40,9 @@ export default function CharactersPage() {
     <div className={styles.page}>
       {video}
       <ScrollReveal>
-        <SectionTitle title="人物志" subtitle="人界篇主要人物 · 按势力浏览" />
+        <SectionTitle title={t('characters.title')} subtitle={t('characters.subtitle')} />
         <div className={styles.starLink}>
-          <Link to="/starchart">✦ 进入人物星云图 · 3D交互探索 ✦</Link>
+          <Link to="/starchart">{t('characters.starLink')}</Link>
         </div>
       </ScrollReveal>
       <ScrollReveal>
@@ -50,7 +52,7 @@ export default function CharactersPage() {
         <CharacterGrid characters={filtered} />
       </ScrollReveal>
       {filtered.length === 0 && (
-        <p className={styles.empty}>没有匹配的人物，请调整筛选条件</p>
+        <p className={styles.empty}>{t('characters.empty')}</p>
       )}
     </div>
   );

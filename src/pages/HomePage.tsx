@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion } from 'framer-motion';
+import { useI18n } from '../i18n';
 import HeroSection from '../components/home/HeroSection';
 import RebroadcastBanner from '../components/home/RebroadcastBanner';
 import HonorsPanel from '../components/home/HonorsPanel';
@@ -13,8 +14,8 @@ import styles from './HomePage.module.css';
 export default function HomePage() {
   const [showAbout, setShowAbout] = useState(false);
   const [showChangelog, setShowChangelog] = useState(false);
+  const { t } = useI18n();
 
-  // Make body transparent and lift root above portal video
   useEffect(() => {
     const root = document.getElementById('root');
     const prevBg = document.body.style.background;
@@ -36,7 +37,6 @@ export default function HomePage() {
     };
   }, []);
 
-  // Render video via portal direct to body — bypasses framer-motion transforms
   const video = createPortal(
     <video
       className={styles.videoBg}
@@ -64,37 +64,24 @@ export default function HomePage() {
         <CommentWall />
       </div>
 
-      {/* Bottom-right buttons */}
-      <button className={styles.aboutBtn} onClick={() => setShowAbout(true)}>？</button>
-      <button className={styles.changelogBtn} onClick={() => setShowChangelog(true)}>更新日志</button>
+      <button className={styles.aboutBtn} onClick={() => setShowAbout(true)}>{t('home.about')}</button>
+      <button className={styles.changelogBtn} onClick={() => setShowChangelog(true)}>{t('home.changelog')}</button>
 
-      {/* About popup */}
       {showAbout && createPortal(
         <motion.div className={styles.aboutOverlay} initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onClick={() => setShowAbout(false)}>
           <motion.div className={styles.aboutCard} initial={{opacity:0,scale:0.9,y:20}} animate={{opacity:1,scale:1,y:0}} exit={{opacity:0,scale:0.9,y:20}} onClick={e=>e.stopPropagation()}>
             <button className={styles.aboutClose} onClick={() => setShowAbout(false)}>×</button>
-            <p className={styles.aboutText}>
-              作者说：
-祝贺《凡人修仙传》开播大吉！
-
-诸位道友别来无恙？
-本网站全程通过 vibe coding 开发，所以有些地方很粗糙，还有许多 bug，但是为爱发电，仅供娱乐。
-背景视频取自社交媒体平台，已获得原作者授权。感谢博主 @落雨无声、@天南第一深情。
-想要同款视频壁纸的道友，可以在b站或者小红车搜以上两位创作者。
-
-感谢诸位道友支持！
-            </p>
+            <p className={styles.aboutText} style={{ whiteSpace: 'pre-wrap' }}>{t('home.aboutText')}</p>
           </motion.div>
         </motion.div>,
         document.body
       )}
 
-      {/* Changelog popup */}
       {showChangelog && createPortal(
         <motion.div className={styles.aboutOverlay} initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onClick={() => setShowChangelog(false)}>
           <motion.div className={styles.aboutCard} initial={{opacity:0,scale:0.9,y:20}} animate={{opacity:1,scale:1,y:0}} exit={{opacity:0,scale:0.9,y:20}} onClick={e=>e.stopPropagation()}>
             <button className={styles.aboutClose} onClick={() => setShowChangelog(false)}>×</button>
-            <h3 className={styles.changelogTitle}>更新日志</h3>
+            <h3 className={styles.changelogTitle}>{t('home.changelogTitle')}</h3>
             <div className={styles.changelogContent}>
               <p>5.24</p>
               <p>将背景视频的压缩率降低，稍微提升了画质；</p>

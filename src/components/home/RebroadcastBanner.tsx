@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useI18n } from '../../i18n';
 import ScrollReveal from '../common/ScrollReveal';
 import styles from './RebroadcastBanner.module.css';
 
@@ -16,10 +17,11 @@ function getCountdown() {
 
 export default function RebroadcastBanner() {
   const [cd, setCd] = useState(getCountdown());
+  const { t } = useI18n();
 
   useEffect(() => {
-    const t = setInterval(() => setCd(getCountdown()), 1000);
-    return () => clearInterval(t);
+    const timer = setInterval(() => setCd(getCountdown()), 1000);
+    return () => clearInterval(timer);
   }, []);
 
   return (
@@ -31,22 +33,22 @@ export default function RebroadcastBanner() {
 
       <ScrollReveal>
         <div className={styles.content}>
-          <div className={styles.badge}>重磅回归</div>
+          <div className={styles.badge}>{t('rebadge')}</div>
           <h2 className={styles.title}>
-            <span className={styles.titleAccent}>慕兰之战</span>
+            <span className={styles.titleAccent}>{t('rebadge.title')}</span>
           </h2>
-          <p className={styles.subtitle}>年番复播 · 荣耀归来</p>
-          <div className={styles.date}>2026 年 6 月 13 日</div>
+          <p className={styles.subtitle}>{t('rebadge.subtitle')}</p>
+          <div className={styles.date}>{t('rebadge.date')}</div>
 
           {cd.days === 0 && cd.hours === 0 && cd.mins === 0 && cd.secs === 0 ? (
-            <div className={styles.liveNow}>已开播，请道友速回宗门</div>
+            <div className={styles.liveNow}>{t('rebadge.live')}</div>
           ) : (
             <div className={styles.countdown}>
               {[
-                { v: cd.days, l: '天' },
-                { v: cd.hours, l: '时' },
-                { v: cd.mins, l: '分' },
-                { v: cd.secs, l: '秒' },
+                { v: cd.days, l: t('rebadge.days') },
+                { v: cd.hours, l: t('rebadge.hours') },
+                { v: cd.mins, l: t('rebadge.mins') },
+                { v: cd.secs, l: t('rebadge.secs') },
               ].map((item) => (
                 <div key={item.l} className={styles.cdItem}>
                   <span className={styles.cdNum}>{String(item.v).padStart(2, '0')}</span>
@@ -56,9 +58,7 @@ export default function RebroadcastBanner() {
             </div>
           )}
 
-          <p className={styles.desc}>
-            韩立元婴大成，慕兰大战一触即发。新篇章、新建模、新特效 —— 国漫天花板荣耀归来。
-          </p>
+          <p className={styles.desc}>{t('rebadge.desc')}</p>
 
           <a
             className={styles.bilibiliLink}
@@ -67,7 +67,7 @@ export default function RebroadcastBanner() {
             rel="noopener noreferrer"
           >
             <span className={styles.linkIcon}>▶</span>
-            前往 B 站观看凡人修仙传
+            {t('rebadge.link')}
             <span className={styles.linkArrow}>→</span>
           </a>
         </div>

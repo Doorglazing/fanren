@@ -9,5 +9,7 @@ export const siteStatistics: SiteStatistics = {
   totalEpisodes: 176,
   yearStart: 2020,
   duration: '约 5 年 10 个月',
+  durationEn: '~5 years 10 months',
   startDate: '2020年7月25日',
+  startDateEn: 'Jul 25, 2020',
 };

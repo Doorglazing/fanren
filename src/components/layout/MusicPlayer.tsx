@@ -1,9 +1,11 @@
 import { useState, useRef, useEffect } from 'react';
+import { useI18n } from '../../i18n';
 import styles from './MusicPlayer.module.css';
 
 export default function MusicPlayer() {
   const [playing, setPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const { t } = useI18n();
 
   useEffect(() => {
     const audio = new Audio('/bgm.mp3');
@@ -11,7 +13,6 @@ export default function MusicPlayer() {
     audio.volume = 0.3;
     audioRef.current = audio;
 
-    // Try autoplay
     audio.play().then(() => setPlaying(true)).catch(() => setPlaying(false));
 
     return () => { audio.pause(); audio.src = ''; };
@@ -32,7 +33,7 @@ export default function MusicPlayer() {
     <button
       className={`${styles.btn} ${playing ? styles.playing : styles.paused}`}
       onClick={toggle}
-      title={playing ? '暂停音乐' : '播放音乐'}
+      title={playing ? t('music.pause') : t('music.play')}
     >
       <svg viewBox="0 0 32 32" className={styles.icon}>
         <circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" strokeWidth="1.5" />
