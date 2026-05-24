@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500">
+  <defs>
+    <filter id="inkWash" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="softBlur">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5f0e8"/>
+      <stop offset="50%" stop-color="#ede4d0"/>
+      <stop offset="100%" stop-color="#f5f0e8"/>
+    </linearGradient>
+    <radialGradient id="moonGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#faf7f0" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#f5f0e8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Rice paper background -->
+  <rect width="400" height="500" fill="url(#bgGrad)"/>
+
+  <!-- Decorative border -->
+  <rect x="12" y="12" width="376" height="476" fill="none" stroke="#2c2c2c" stroke-width="1" opacity="0.5"/>
+  <rect x="16" y="16" width="368" height="468" fill="none" stroke="#2c2c2c" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- Moon glow -->
+  <circle cx="200" cy="130" r="100" fill="url(#moonGlow)"/>
+  <circle cx="200" cy="120" r="60" fill="#faf7f0" opacity="0.4" filter="url(#softBlur)"/>
+
+  <!-- Fox spirit silhouette - elegant, mysterious -->
+  <g filter="url(#inkWash)">
+    <!-- Flowing robes - ethereal -->
+    <path d="M155 140 Q160 128 170 120 Q180 115 190 116 Q200 117 210 120 Q220 128 225 140 L228 260 Q230 310 232 350 Q234 390 235 430 L228 438 Q218 442 200 444 Q182 442 172 438 L165 430 Q163 390 160 350 Q158 310 155 260 Q153 200 155 140Z" fill="#2c2c2c" opacity="0.3"/>
+
+    <!-- Nine-tail reference - flowing ribbon tails -->
+    <path d="M165 380 Q140 370 120 380 Q110 388 115 400 Q125 395 140 390 Q155 385 165 385" fill="none" stroke="#2c2c2c" stroke-width="1.5" opacity="0.3"/>
+    <path d="M168 370 Q138 355 110 362 Q100 368 105 382 Q115 378 135 372 Q155 367 168 370" fill="none" stroke="#2c2c2c" stroke-width="1.5" opacity="0.25"/>
+    <path d="M170 390 Q145 385 125 395 Q115 402 118 415 Q128 410 145 402 Q160 396 170 393" fill="none" stroke="#2c2c2c" stroke-width="1.5" opacity="0.2"/>
+
+    <!-- Fox ears hint in hair -->
+    <path d="M175 85 Q168 68 172 58 Q178 52 185 56 Q180 66 178 82Z" fill="#1a1a1a" opacity="0.6"/>
+    <path d="M208 82 Q212 65 210 55 Q206 50 200 54 Q202 64 205 80Z" fill="#1a1a1a" opacity="0.6"/>
+
+    <!-- Hair - flowing, long -->
+    <path d="M165 130 Q160 110 168 90 Q175 75 185 70 Q200 65 215 72 Q225 80 228 95 Q230 110 225 125 Q220 130 210 132 L225 200 Q228 220 225 235 Q218 225 212 210 L210 180 Q208 150 205 135 Q200 140 190 140 Q180 138 175 135 Q168 150 165 200 Q163 220 160 235 Q155 225 152 210 L155 180 Q158 150 160 132 Q155 130 150 125 Q142 110 145 90 Q150 75 162 70 Q170 65 178 70 Q188 78 190 90 Q192 105 188 118 Q182 128 175 130Z" fill="#1a1a1a" opacity="0.7"/>
+
+    <!-- Face -->
+    <ellipse cx="195" cy="100" rx="12" ry="16" fill="#f5f0e8" opacity="0.45"/>
+    <!-- Eyes - mysterious, half-lidded -->
+    <line x1="187" y1="96" x2="193" y2="96" stroke="#1a1a1a" stroke-width="1.5" opacity="0.6"/>
+    <line x1="199" y1="96" x2="206" y2="96" stroke="#1a1a1a" stroke-width="1.5" opacity="0.6"/>
+    <!-- Eyebrows - elegant arch -->
+    <path d="M185 91 Q191 87 196 90" fill="none" stroke="#1a1a1a" stroke-width="1.2" opacity="0.5"/>
+    <path d="M196 90 Q202 87 207 91" fill="none" stroke="#1a1a1a" stroke-width="1.2" opacity="0.5"/>
+    <!-- Nose -->
+    <path d="M195 95 Q194 101 195 106" fill="none" stroke="#1a1a1a" stroke-width="0.8" opacity="0.4"/>
+    <!-- Mouth - subtle smile -->
+    <path d="M191 110 Q196 113 201 110" fill="none" stroke="#c03b3b" stroke-width="0.8" opacity="0.5"/>
+
+    <!-- Sleeves - wide, flowing -->
+    <path d="M160 145 Q130 160 108 185 Q95 205 100 230 Q110 222 125 208 Q140 190 158 175 Q163 162 160 145Z" fill="#2c2c2c" opacity="0.2"/>
+    <path d="M220 142 Q250 155 272 178 Q285 198 280 222 Q270 215 255 200 Q240 185 225 175 Q222 165 220 142Z" fill="#2c2c2c" opacity="0.2"/>
+  </g>
+
+  <!-- Chinese wisteria flowers (紫藤) -->
+  <g opacity="0.25">
+    <path d="M60 200 Q55 180 65 165 Q75 155 80 160 Q82 175 75 190 Q68 200 60 200Z" fill="#2c2c2c"/>
+    <circle cx="63" cy="170" r="2.5" fill="#c03b3b" opacity="0.4"/>
+    <circle cx="72" cy="175" r="2" fill="#c03b3b" opacity="0.3"/>
+    <circle cx="68" cy="185" r="2" fill="#c03b3b" opacity="0.3"/>
+  </g>
+
+  <!-- Ink wash clouds -->
+  <g opacity="0.07">
+    <ellipse cx="80" cy="400" rx="45" ry="8" fill="#2c2c2c"/>
+    <ellipse cx="310" cy="420" rx="50" ry="7" fill="#2c2c2c"/>
+    <ellipse cx="200" cy="455" rx="70" ry="6" fill="#2c2c2c"/>
+  </g>
+
+  <!-- Character name -->
+  <text x="200" y="478" text-anchor="middle" font-family="serif" font-size="28" fill="#1a1a1a" opacity="0.8" letter-spacing="8">银月</text>
+
+  <!-- Vermillion seal -->
+  <g transform="translate(318, 442)">
+    <rect x="0" y="0" width="34" height="34" fill="#c03b3b" opacity="0.85" rx="3"/>
+    <text x="17" y="14" text-anchor="middle" font-family="serif" font-size="10" fill="#f5f0e8" opacity="0.9">银月</text>
+    <text x="17" y="28" text-anchor="middle" font-family="serif" font-size="10" fill="#f5f0e8" opacity="0.9">之印</text>
+  </g>
+</svg>

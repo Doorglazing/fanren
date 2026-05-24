@@ -1,0 +1,49 @@
+.videoBg {
+  position: fixed; inset: 0; width: 100vw; height: 100vh;
+  object-fit: cover; z-index: 0; pointer-events: none;
+}
+
+.page {
+  position: relative; z-index: 1;
+  padding: 2rem;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  background: rgba(245, 240, 232, 0.82);
+  backdrop-filter: blur(6px);
+  border-radius: 4px;
+  min-height: 100vh;
+}
+
+.starLink {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.starLink a {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--gold-light);
+  letter-spacing: 0.1em;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid rgba(196,168,75,0.3);
+  border-radius: 4px;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+  text-shadow: 0 0 8px rgba(0,0,0,0.5);
+  text-decoration: none;
+}
+.starLink a:hover {
+  background: rgba(196,168,75,0.2);
+  border-color: var(--gold);
+  box-shadow: 0 0 20px rgba(196,168,75,0.2);
+}
+
+.empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  font-family: var(--font-display);
+  color: var(--ink-faint);
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+}

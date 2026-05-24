@@ -1,0 +1,59 @@
+/* ===== Ink Effects ===== */
+.ink-wash-image {
+  filter: grayscale(1) contrast(0.9) brightness(0.95);
+  mix-blend-mode: multiply;
+}
+
+.ink-wash-image-warm {
+  filter: grayscale(0.7) sepia(0.2) contrast(0.9) brightness(0.95);
+  mix-blend-mode: multiply;
+}
+
+.ink-texture-bg {
+  background-color: var(--parchment);
+  background-image: radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
+}
+
+.ink-border {
+  border: 1px solid var(--ink-faint);
+  position: relative;
+}
+.ink-border::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(0,0,0,0.08);
+  pointer-events: none;
+}
+
+.scroll-rhythm {
+  border-image: repeating-linear-gradient(45deg, var(--parchment-dark), var(--parchment-dark) 2px, transparent 2px, transparent 6px) 8;
+  border-width: 8px;
+  border-style: solid;
+}
+
+.vertical-rhythm {
+  border-left: 1px solid var(--ink-faint);
+  padding-left: 1rem;
+}
+
+.brush-underline {
+  position: relative;
+  display: inline;
+}
+.brush-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--vermillion);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.brush-underline:hover::after,
+.brush-underline.visible::after {
+  transform: scaleX(1);
+}

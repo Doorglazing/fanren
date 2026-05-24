@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500">
+  <defs>
+    <filter id="inkWash" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="softBlur">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5f0e8"/>
+      <stop offset="50%" stop-color="#efe8d5"/>
+      <stop offset="100%" stop-color="#f5f0e8"/>
+    </linearGradient>
+    <linearGradient id="waveGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2c2c2c" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#2c2c2c" stop-opacity="0.02"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rice paper background -->
+  <rect width="400" height="500" fill="url(#bgGrad)"/>
+
+  <!-- Decorative border -->
+  <rect x="12" y="12" width="376" height="476" fill="none" stroke="#2c2c2c" stroke-width="1" opacity="0.5"/>
+  <rect x="16" y="16" width="368" height="468" fill="none" stroke="#2c2c2c" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- Ocean waves background -->
+  <g opacity="0.12">
+    <path d="M0 320 Q30 310 60 320 Q90 330 120 320 Q150 310 180 320 Q210 330 240 320 Q270 310 300 320 Q330 330 360 320 Q390 310 400 318 L400 500 L0 500Z" fill="none" stroke="#2c2c2c" stroke-width="1.5"/>
+    <path d="M0 345 Q40 332 80 345 Q120 358 160 345 Q200 332 240 345 Q280 358 320 345 Q360 332 400 345 L400 500 L0 500Z" fill="none" stroke="#2c2c2c" stroke-width="1"/>
+    <path d="M0 380 Q50 368 100 380 Q150 392 200 380 Q250 368 300 380 Q350 392 400 380 L400 500 L0 500Z" fill="none" stroke="#2c2c2c" stroke-width="0.8"/>
+  </g>
+
+  <!-- Distant stars -->
+  <g opacity="0.15">
+    <circle cx="70" cy="60" r="1.5" fill="#2c2c2c"/>
+    <circle cx="150" cy="40" r="1.5" fill="#2c2c2c"/>
+    <circle cx="280" cy="55" r="1.5" fill="#2c2c2c"/>
+    <circle cx="340" cy="80" r="1.5" fill="#2c2c2c"/>
+    <circle cx="100" cy="95" r="1" fill="#2c2c2c"/>
+    <circle cx="320" cy="110" r="1" fill="#2c2c2c"/>
+    <circle cx="50" cy="150" r="1" fill="#2c2c2c"/>
+    <circle cx="360" cy="140" r="1" fill="#2c2c2c"/>
+  </g>
+
+  <!-- Lotus flower -->
+  <g opacity="0.3" transform="translate(300, 340)">
+    <ellipse cx="0" cy="0" rx="18" ry="6" fill="#2c2c2c" opacity="0.1"/>
+    <path d="M0 -12 Q8 -6 10 0 Q6 -4 0 -12Z" fill="#f5f0e8" stroke="#2c2c2c" stroke-width="0.5" opacity="0.6"/>
+    <path d="M0 -12 Q-8 -6 -10 0 Q-6 -4 0 -12Z" fill="#f5f0e8" stroke="#2c2c2c" stroke-width="0.5" opacity="0.6"/>
+    <path d="M0 -10 Q5 0 8 8 Q3 2 0 -10Z" fill="#f5f0e8" stroke="#2c2c2c" stroke-width="0.5" opacity="0.5"/>
+    <path d="M0 -10 Q-5 0 -8 8 Q-3 2 0 -10Z" fill="#f5f0e8" stroke="#2c2c2c" stroke-width="0.5" opacity="0.5"/>
+    <!-- Lotus pod center -->
+    <ellipse cx="0" cy="-3" rx="3" ry="2" fill="#c03b3b" opacity="0.3"/>
+  </g>
+
+  <!-- Female figure - elegant, clever -->
+  <g filter="url(#inkWash)">
+    <!-- Robe body - flowing -->
+    <path d="M160 135 Q165 125 175 118 Q185 114 195 116 Q205 118 210 125 L215 140 L218 260 Q220 300 222 340 Q224 380 226 420 L220 430 Q210 435 198 437 Q185 437 175 432 L170 425 Q168 390 165 350 Q162 310 160 270 Q158 220 160 180 Q160 150 160 135Z" fill="#1a1a1a" opacity="0.35"/>
+
+    <!-- Side profile suggesting cleverness -->
+    <path d="M175 120 Q178 102 188 88 Q195 78 205 78 Q215 82 220 95 Q225 108 225 120 Q220 128 210 130 Q200 132 190 130 Q180 128 175 120Z" fill="#1a1a1a" opacity="0.65"/>
+
+    <!-- Hair - elaborate style -->
+    <path d="M178 118 Q170 100 175 82 Q180 70 190 68 Q200 66 210 70 Q218 76 220 88 L225 100 Q220 95 210 92 Q200 90 190 92 Q180 95 178 100Z" fill="#1a1a1a" opacity="0.8"/>
+    <!-- Hair ornament -->
+    <path d="M185 80 L180 55 Q178 45 185 42 L195 40 Q200 45 195 55 L192 78" fill="none" stroke="#2c2c2c" stroke-width="1" opacity="0.4"/>
+    <circle cx="188" cy="50" r="3" fill="#c03b3b" opacity="0.5"/>
+
+    <!-- Face profile -->
+    <ellipse cx="198" cy="100" rx="12" ry="16" fill="#f5f0e8" opacity="0.45"/>
+    <!-- Eyes - intelligent, slightly narrowed -->
+    <line x1="190" y1="96" x2="196" y2="96" stroke="#1a1a1a" stroke-width="1.5" opacity="0.6"/>
+    <line x1="202" y1="96" x2="208" y2="96" stroke="#1a1a1a" stroke-width="1.5" opacity="0.6"/>
+    <!-- Eyebrows - refined arch -->
+    <path d="M188 92 Q193 88 198 90" fill="none" stroke="#1a1a1a" stroke-width="1" opacity="0.5"/>
+    <path d="M200 90 Q206 88 212 92" fill="none" stroke="#1a1a1a" stroke-width="1" opacity="0.5"/>
+    <!-- Nose -->
+    <path d="M198 95 Q196 101 197 106" fill="none" stroke="#1a1a1a" stroke-width="0.8" opacity="0.4"/>
+    <!-- Lips -->
+    <path d="M194 110 Q199 112 204 110" fill="none" stroke="#c03b3b" stroke-width="0.8" opacity="0.5"/>
+
+    <!-- Sleeves -->
+    <path d="M165 140 Q140 155 125 175 Q115 190 120 210 Q130 205 140 195 Q150 180 163 168 Q168 158 165 140Z" fill="#2c2c2c" opacity="0.2"/>
+    <path d="M212 142 Q235 155 250 170 Q260 182 255 198 Q248 192 240 180 Q228 168 218 160 Q215 152 212 142Z" fill="#2c2c2c" opacity="0.2"/>
+  </g>
+
+  <!-- Cloud wisps -->
+  <g opacity="0.06">
+    <ellipse cx="100" cy="400" rx="35" ry="6" fill="#2c2c2c"/>
+    <ellipse cx="280" cy="430" rx="40" ry="5" fill="#2c2c2c"/>
+  </g>
+
+  <!-- Character name -->
+  <text x="200" y="475" text-anchor="middle" font-family="serif" font-size="28" fill="#1a1a1a" opacity="0.8" letter-spacing="8">紫灵</text>
+
+  <!-- Vermillion seal -->
+  <g transform="translate(315, 435)">
+    <rect x="0" y="0" width="34" height="34" fill="#c03b3b" opacity="0.85" rx="3"/>
+    <text x="17" y="14" text-anchor="middle" font-family="serif" font-size="10" fill="#f5f0e8" opacity="0.9">妙音</text>
+    <text x="17" y="28" text-anchor="middle" font-family="serif" font-size="10" fill="#f5f0e8" opacity="0.9">之印</text>
+  </g>
+</svg>

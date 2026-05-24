@@ -1,0 +1,58 @@
+.page {
+  padding: 2rem;
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+
+/* Filter bar */
+.filterBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.filterPill {
+  padding: 0.35rem 0.9rem;
+  font-size: 0.9rem;
+  font-family: var(--font-display);
+  letter-spacing: 0.06em;
+  color: var(--ink-light);
+  border: 1px solid rgba(0,0,0,0.12);
+  background: var(--rice-paper);
+  border-radius: 3px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.filterPill:hover {
+  color: var(--vermillion);
+  border-color: var(--vermillion);
+}
+
+.filterPillActive {
+  background: var(--vermillion);
+  color: #fff;
+  border-color: var(--vermillion);
+}
+
+.filterPillActive:hover {
+  color: #fff;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+
+.empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  font-family: var(--font-display);
+  color: var(--ink-faint);
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+}

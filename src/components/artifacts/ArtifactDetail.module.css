@@ -1,0 +1,14 @@
+.overlay { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; }
+.card { width: 90%; max-width: 520px; max-height: 85vh; overflow-y: auto; background: var(--rice-paper); border-radius: 8px; padding: 2rem; position: relative; box-shadow: 0 8px 40px rgba(0,0,0,0.15); }
+.close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; color: var(--ink-faint); cursor: pointer; transition: color 0.3s; }
+.close:hover { color: var(--vermillion); }
+.header { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; }
+.grade { font-family: var(--font-display); font-size: 0.8rem; color: var(--gold); background: rgba(196,168,75,0.08); border: 1px solid rgba(196,168,75,0.2); padding: 0.15rem 0.6rem; border-radius: 2px; }
+.type { font-size: 0.8rem; color: var(--ink-faint); }
+.name { font-family: var(--font-display); font-size: 1.8rem; color: var(--ink-heavy); letter-spacing: 0.12em; }
+.owner { font-size: 0.9rem; color: var(--ink-light); margin-top: 0.3rem; }
+.section { margin-top: 1.25rem; }
+.sectionTitle { font-family: var(--font-display); font-size: 1rem; color: var(--vermillion); letter-spacing: 0.06em; margin-bottom: 0.4rem; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 0.2rem; }
+.text { font-size: 0.95rem; color: var(--ink-medium); line-height: 1.9; text-indent: 2em; }
+.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tag { font-size: 0.8rem; color: var(--jade); font-family: var(--font-display); padding: 0.2rem 0.6rem; background: rgba(91,140,90,0.06); border: 1px solid rgba(91,140,90,0.15); border-radius: 2px; }

@@ -1,0 +1,80 @@
+.section {
+  padding: 4rem 2rem;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  background: rgba(245, 240, 232, 0.7);
+  backdrop-filter: blur(3px);
+  border-radius: 4px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.cardWrapper {
+  height: 100%;
+}
+
+.card {
+  background: rgba(245, 240, 232, 0.88);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  height: 100%;
+  position: relative;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 0;
+  background: var(--vermillion);
+  transition: height 0.4s ease;
+}
+
+.card:hover::before {
+  height: 100%;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+}
+
+.year {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--vermillion);
+  opacity: 0.3;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.cardTitle {
+  font-size: 1.3rem;
+  color: var(--ink-heavy);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.06em;
+}
+
+.issuer {
+  font-size: 0.85rem;
+  color: var(--gold);
+  font-family: var(--font-display);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.desc {
+  font-size: 0.9rem;
+  color: var(--ink-light);
+  line-height: 1.7;
+}

@@ -1,0 +1,53 @@
+/* ===== Animations ===== */
+@keyframes inkSpread {
+  0% { clip-path: circle(0% at 50% 50%); filter: blur(8px); opacity: 0; }
+  100% { clip-path: circle(100% at 50% 50%); filter: blur(0); opacity: 1; }
+}
+
+@keyframes scrollReveal {
+  0% { transform: translateY(40px); filter: blur(3px); opacity: 0; }
+  100% { transform: translateY(0); filter: blur(0); opacity: 1; }
+}
+
+@keyframes sealStamp {
+  0% { transform: scale(1.6) rotate(-12deg); }
+  60% { transform: scale(0.95) rotate(2deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+
+@keyframes inkDrip {
+  0% { height: 0; opacity: 0; }
+  40% { opacity: 1; }
+  100% { height: var(--drip-height, 60px); opacity: 0.8; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(60px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes brushSweep {
+  0% { transform: scaleX(0); transform-origin: left; }
+  100% { transform: scaleX(1); transform-origin: left; }
+}
+
+.animate-scroll-reveal {
+  animation: scrollReveal 0.8s ease-out forwards;
+}
+
+.animate-seal {
+  animation: sealStamp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-float-up {
+  animation: floatUp 0.8s ease-out forwards;
+}

@@ -1,0 +1,125 @@
+.section {
+  padding: 4rem 2rem 6rem;
+}
+
+.inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+
+.synopsis {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.synopsisTitle {
+  font-size: 1.8rem;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.75rem;
+  color: var(--ink-full);
+}
+
+.underline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.underlineLine {
+  display: block;
+  width: 50px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ink-faint), transparent);
+}
+
+.underlineDot {
+  width: 5px;
+  height: 5px;
+  background: var(--vermillion);
+  border-radius: 50%;
+}
+
+.synopsisText {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: left;
+  padding: 2rem;
+  background: rgba(245, 240, 232, 0.88);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.synopsisText p {
+  font-size: 0.95rem;
+  color: var(--ink-medium);
+  line-height: 2;
+  margin-bottom: 1rem;
+  text-indent: 2em;
+}
+
+.synopsisText p:last-child {
+  margin-bottom: 0;
+  text-align: center;
+  color: var(--vermillion);
+  font-family: var(--font-display);
+  letter-spacing: 0.08em;
+  text-indent: 0;
+}
+
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .highlights {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.highlightCard {
+  height: 100%;
+}
+
+.highlightInner {
+  background: rgba(245, 240, 232, 0.88);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 2rem 1.5rem;
+  height: 100%;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.highlightInner:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+.highlightNumber {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: var(--vermillion);
+  opacity: 0.08;
+  line-height: 1;
+}
+
+.highlightTitle {
+  font-size: 1.15rem;
+  color: var(--ink-heavy);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.5rem;
+}
+
+.highlightDesc {
+  font-size: 0.85rem;
+  color: var(--ink-light);
+  line-height: 1.7;
+}

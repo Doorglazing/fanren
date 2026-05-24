@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500">
+  <defs>
+    <filter id="inkWash" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="softBlur">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5f0e8"/>
+      <stop offset="50%" stop-color="#efe5d0"/>
+      <stop offset="100%" stop-color="#f5f0e8"/>
+    </linearGradient>
+    <linearGradient id="darkWash" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a1a1a" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#1a1a1a" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rice paper background -->
+  <rect width="400" height="500" fill="url(#bgGrad)"/>
+
+  <!-- Decorative border -->
+  <rect x="12" y="12" width="376" height="476" fill="none" stroke="#2c2c2c" stroke-width="1" opacity="0.5"/>
+  <rect x="16" y="16" width="368" height="468" fill="none" stroke="#2c2c2c" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- Storm clouds -->
+  <g opacity="0.12">
+    <path d="M0 40 Q30 20 60 35 Q90 15 120 32 Q150 18 180 30 Q210 15 240 28 Q270 18 300 32 Q330 20 360 35 Q390 18 400 40 L400 80 Q370 65 340 73 Q310 60 280 68 Q250 55 220 63 Q190 50 160 60 Q130 48 100 58 Q70 45 40 55 Q15 42 0 50Z" fill="#2c2c2c"/>
+    <ellipse cx="100" cy="90" rx="50" ry="15" fill="#2c2c2c" opacity="0.6"/>
+    <ellipse cx="280" cy="85" rx="45" ry="12" fill="#2c2c2c" opacity="0.5"/>
+  </g>
+
+  <!-- Dark ocean waves (乱星海) -->
+  <g opacity="0.15">
+    <path d="M0 370 Q30 358 60 370 Q90 382 120 370 Q150 358 180 370 Q210 382 240 370 Q270 358 300 370 Q330 382 360 370 Q390 358 400 365 L400 500 L0 500Z" fill="none" stroke="#2c2c2c" stroke-width="2"/>
+    <path d="M0 395 Q40 380 80 395 Q120 410 160 395 Q200 380 240 395 Q280 410 320 395 Q360 380 400 395 L400 500 L0 500Z" fill="none" stroke="#2c2c2c" stroke-width="1.5"/>
+    <path d="M0 425 Q50 412 100 425 Q150 438 200 425 Q250 412 300 425 Q350 438 400 425 L400 500 L0 500Z" fill="none" stroke="#2c2c2c" stroke-width="1"/>
+  </g>
+
+  <!-- Domineering figure -->
+  <g filter="url(#inkWash)">
+    <!-- Robe - massive, imposing -->
+    <path d="M145 100 Q150 92 162 85 Q175 80 188 82 Q200 85 212 92 Q220 100 222 108 L226 260 Q228 310 230 360 Q232 410 234 440 L228 448 Q218 452 200 454 Q182 452 172 448 L166 440 Q164 410 162 360 Q160 310 158 260 Q155 190 152 140 Q150 118 145 100Z" fill="#1a1a1a" opacity="0.5"/>
+
+    <!-- Cloak billowing -->
+    <path d="M145 100 Q125 105 108 120 Q95 132 98 150 Q108 142 122 130 Q138 118 148 110" fill="#1a1a1a" opacity="0.45"/>
+    <path d="M222 100 Q245 105 260 118 Q272 128 268 145 Q258 138 245 128 Q232 118 224 110" fill="#1a1a1a" opacity="0.45"/>
+
+    <!-- Head - fierce -->
+    <path d="M155 100 Q158 75 168 58 Q178 45 192 42 Q206 45 215 58 Q225 75 228 100 Q225 108 215 112 Q200 114 185 112 Q170 108 160 104 Q155 102 155 100Z" fill="#1a1a1a" opacity="0.75"/>
+
+    <!-- Hair - wild, aggressive -->
+    <path d="M168 58 Q160 40 165 30 Q170 22 178 25 L172 38 Q168 48 170 58" fill="#1a1a1a" opacity="0.7"/>
+    <path d="M215 58 Q222 38 218 28 Q214 20 206 22 L212 36 Q216 46 213 58" fill="#1a1a1a" opacity="0.7"/>
+
+    <!-- Face - harsh, domineering -->
+    <ellipse cx="192" cy="88" rx="14" ry="17" fill="#f5f0e8" opacity="0.35"/>
+    <!-- Eyes - fierce, glaring -->
+    <line x1="181" y1="82" x2="190" y2="82" stroke="#1a1a1a" stroke-width="2.2" opacity="0.8"/>
+    <line x1="196" y1="82" x2="205" y2="82" stroke="#1a1a1a" stroke-width="2.2" opacity="0.8"/>
+    <!-- Eyebrows - thick, angry slant -->
+    <path d="M178 77 Q186 73 192 77" fill="none" stroke="#1a1a1a" stroke-width="2" opacity="0.75"/>
+    <path d="M194 77 Q202 73 208 77" fill="none" stroke="#1a1a1a" stroke-width="2" opacity="0.75"/>
+    <!-- Nose - broad -->
+    <path d="M192 80 Q190 88 191 94" fill="none" stroke="#1a1a1a" stroke-width="1.2" opacity="0.5"/>
+    <!-- Mouth - sneer -->
+    <path d="M184 100 Q190 98 196 100" fill="none" stroke="#2c2c2c" stroke-width="1.5" opacity="0.6"/>
+
+    <!-- Dark energy swirl -->
+    <path d="M140 200 Q125 230 130 260 Q135 280 148 290" fill="none" stroke="#2c2c2c" stroke-width="2" opacity="0.4"/>
+    <path d="M240 195 Q255 225 250 255 Q245 275 232 285" fill="none" stroke="#2c2c2c" stroke-width="2" opacity="0.4"/>
+  </g>
+
+  <!-- Dark spiritual energy emanation -->
+  <g opacity="0.06">
+    <circle cx="195" cy="300" r="60" fill="#2c2c2c"/>
+    <circle cx="195" cy="350" r="40" fill="#2c2c2c"/>
+  </g>
+
+  <!-- Character name -->
+  <text x="200" y="482" text-anchor="middle" font-family="serif" font-size="26" fill="#1a1a1a" opacity="0.8" letter-spacing="5">极阴老祖</text>
+
+  <!-- Vermillion seal -->
+  <g transform="translate(318, 444)">
+    <rect x="0" y="0" width="34" height="34" fill="#c03b3b" opacity="0.85" rx="3"/>
+    <text x="17" y="14" text-anchor="middle" font-family="serif" font-size="9" fill="#f5f0e8" opacity="0.9">极阴</text>
+    <text x="17" y="28" text-anchor="middle" font-family="serif" font-size="9" fill="#f5f0e8" opacity="0.9">老祖</text>
+  </g>
+</svg>

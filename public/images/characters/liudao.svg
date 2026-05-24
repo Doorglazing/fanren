@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500">
+  <defs>
+    <filter id="inkWash" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="softBlur">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5f0e8"/>
+      <stop offset="50%" stop-color="#f0e6d2"/>
+      <stop offset="100%" stop-color="#f5f0e8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rice paper background -->
+  <rect width="400" height="500" fill="url(#bgGrad)"/>
+
+  <!-- Decorative border -->
+  <rect x="12" y="12" width="376" height="476" fill="none" stroke="#2c2c2c" stroke-width="1" opacity="0.5"/>
+  <rect x="16" y="16" width="368" height="468" fill="none" stroke="#2c2c2c" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- War banners background -->
+  <g opacity="0.12">
+    <line x1="80" y1="60" x2="80" y2="120" stroke="#2c2c2c" stroke-width="1.5"/>
+    <path d="M80 60 L100 55 L100 85 L80 80Z" fill="none" stroke="#2c2c2c" stroke-width="1"/>
+    <line x1="320" y1="70" x2="320" y2="130" stroke="#2c2c2c" stroke-width="1.5"/>
+    <path d="M320 70 L340 65 L340 95 L320 90Z" fill="none" stroke="#2c2c2c" stroke-width="1"/>
+  </g>
+
+  <!-- Dramatic background wash -->
+  <path d="M0 200 Q100 160 200 180 Q300 150 400 190 L400 500 L0 500Z" fill="#2c2c2c" opacity="0.04"/>
+
+  <!-- Alliance leader figure - commanding presence -->
+  <g filter="url(#inkWash)">
+    <!-- Robe - regal, imposing -->
+    <path d="M140 90 Q145 82 158 75 Q172 70 188 72 Q205 75 218 82 Q228 90 230 98 L234 260 Q236 310 240 360 Q242 410 244 440 L238 448 Q228 452 210 454 Q192 452 182 448 L176 440 Q174 410 172 360 Q170 310 168 260 Q165 190 162 140 Q160 112 140 90Z" fill="#1a1a1a" opacity="0.45"/>
+
+    <!-- Elaborate collar / armor hint -->
+    <path d="M140 90 Q135 80 145 72 Q155 65 168 62 Q180 60 190 62 L200 68 L210 62 Q220 60 230 62 Q245 68 242 80" fill="none" stroke="#2c2c2c" stroke-width="1.5" opacity="0.5"/>
+
+    <!-- Head - commanding -->
+    <path d="M158 90 Q162 65 172 48 Q180 38 192 36 Q205 38 215 50 Q225 65 228 88 Q225 98 215 102 Q200 104 185 102 Q170 100 162 96 Q158 94 158 90Z" fill="#1a1a1a" opacity="0.75"/>
+
+    <!-- Crown/headdress -->
+    <path d="M180 42 L178 28 Q180 22 186 20 L194 20 Q198 24 196 28 L194 42" fill="none" stroke="#2c2c2c" stroke-width="1.5" opacity="0.5"/>
+    <path d="M178 28 Q186 24 196 28" fill="none" stroke="#c03b3b" stroke-width="1" opacity="0.5"/>
+
+    <!-- Face - authoritative -->
+    <ellipse cx="193" cy="80" rx="15" ry="18" fill="#f5f0e8" opacity="0.4"/>
+    <!-- Eyes - piercing, strategic -->
+    <line x1="182" y1="74" x2="191" y2="74" stroke="#1a1a1a" stroke-width="2" opacity="0.75"/>
+    <line x1="197" y1="74" x2="206" y2="74" stroke="#1a1a1a" stroke-width="2" opacity="0.75"/>
+    <!-- Eyebrows - thick, firm -->
+    <path d="M178 69 Q186 65 193 69" fill="none" stroke="#1a1a1a" stroke-width="1.8" opacity="0.7"/>
+    <path d="M195 69 Q204 65 210 69" fill="none" stroke="#1a1a1a" stroke-width="1.8" opacity="0.7"/>
+    <!-- Nose -->
+    <path d="M194 72 Q192 80 193 86" fill="none" stroke="#1a1a1a" stroke-width="1" opacity="0.5"/>
+    <!-- Mouth - firm, decisive -->
+    <line x1="186" y1="92" x2="201" y2="92" stroke="#1a1a1a" stroke-width="1.3" opacity="0.6"/>
+
+    <!-- Commander's sash -->
+    <path d="M168 260 Q210 270 245 260" fill="none" stroke="#2c2c2c" stroke-width="3" opacity="0.5"/>
+    <path d="M195 260 L192 285 Q190 295 195 300" fill="none" stroke="#c03b3b" stroke-width="1.2" opacity="0.5"/>
+  </g>
+
+  <!-- Six paths wheel symbol (六道轮回) -->
+  <g opacity="0.15" transform="translate(195, 400)">
+    <circle cx="0" cy="0" r="20" fill="none" stroke="#2c2c2c" stroke-width="1"/>
+    <circle cx="0" cy="0" r="12" fill="none" stroke="#2c2c2c" stroke-width="0.8"/>
+    <line x1="-20" y1="0" x2="20" y2="0" stroke="#2c2c2c" stroke-width="0.5"/>
+    <line x1="0" y1="-20" x2="0" y2="20" stroke="#2c2c2c" stroke-width="0.5"/>
+    <line x1="-14" y1="-14" x2="14" y2="14" stroke="#2c2c2c" stroke-width="0.5"/>
+    <line x1="14" y1="-14" x2="-14" y2="14" stroke="#2c2c2c" stroke-width="0.5"/>
+  </g>
+
+  <!-- Character name -->
+  <text x="200" y="482" text-anchor="middle" font-family="serif" font-size="26" fill="#1a1a1a" opacity="0.8" letter-spacing="5">六道极圣</text>
+
+  <!-- Vermillion seal -->
+  <g transform="translate(318, 444)">
+    <rect x="0" y="0" width="34" height="34" fill="#c03b3b" opacity="0.85" rx="3"/>
+    <text x="17" y="14" text-anchor="middle" font-family="serif" font-size="9" fill="#f5f0e8" opacity="0.9">逆星</text>
+    <text x="17" y="28" text-anchor="middle" font-family="serif" font-size="9" fill="#f5f0e8" opacity="0.9">盟主</text>
+  </g>
+</svg>

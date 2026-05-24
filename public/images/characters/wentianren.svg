@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500">
+  <defs>
+    <filter id="inkWash" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="softBlur">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5f0e8"/>
+      <stop offset="50%" stop-color="#f2ecd5"/>
+      <stop offset="100%" stop-color="#f5f0e8"/>
+    </linearGradient>
+    <linearGradient id="mistGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2c2c2c" stop-opacity="0.08"/>
+      <stop offset="50%" stop-color="#2c2c2c" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#2c2c2c" stop-opacity="0.08"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rice paper background -->
+  <rect width="400" height="500" fill="url(#bgGrad)"/>
+
+  <!-- Decorative border -->
+  <rect x="12" y="12" width="376" height="476" fill="none" stroke="#2c2c2c" stroke-width="1" opacity="0.5"/>
+  <rect x="16" y="16" width="368" height="468" fill="none" stroke="#2c2c2c" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- Mountain peaks (落云宗) -->
+  <g opacity="0.08">
+    <path d="M40 250 L80 180 L120 240 L170 170 L220 235 L280 160 L330 220 L370 175 L400 230 L400 500 L0 500 L0 250Z" fill="#2c2c2c"/>
+  </g>
+
+  <!-- Cloud wrapping mountains (落云) -->
+  <g opacity="0.08">
+    <ellipse cx="80" cy="200" rx="50" ry="15" fill="#2c2c2c"/>
+    <ellipse cx="220" cy="210" rx="60" ry="14" fill="#2c2c2c"/>
+    <ellipse cx="340" cy="195" rx="45" ry="12" fill="#2c2c2c"/>
+  </g>
+
+  <!-- Distant eagle -->
+  <g opacity="0.15" transform="translate(320, 80)">
+    <path d="M0 15 Q8 5 18 8 Q25 10 28 18 Q22 20 15 22 Q5 20 0 15Z" fill="#2c2c2c"/>
+    <path d="M18 8 Q22 0 30 2 Q32 8 28 12" fill="#2c2c2c" opacity="0.6"/>
+  </g>
+
+  <!-- Sect leader figure - upright, dignified -->
+  <g filter="url(#inkWash)">
+    <!-- Formal robe - structured -->
+    <path d="M150 95 Q155 88 165 82 Q178 77 190 80 Q202 82 212 88 Q220 95 222 102 L226 260 Q228 310 230 360 Q232 410 234 435 L228 442 Q218 446 200 448 Q182 446 172 442 L166 435 Q164 410 162 360 Q160 310 158 260 Q155 200 153 150 Q152 118 150 95Z" fill="#1a1a1a" opacity="0.38"/>
+
+    <!-- Formal collar / official robes -->
+    <path d="M150 95 L158 72 L168 82 L178 90 L190 92" fill="#1a1a1a" opacity="0.5"/>
+    <path d="M222 100 L232 78 L222 82 L212 90 L200 92" fill="#1a1a1a" opacity="0.5"/>
+
+    <!-- Head - sharp, discerning -->
+    <path d="M160 95 Q163 72 172 56 Q180 44 192 42 Q204 44 212 56 Q220 72 222 95 Q218 102 208 106 Q196 108 182 106 Q170 102 162 100 Q160 98 160 95Z" fill="#1a1a1a" opacity="0.7"/>
+
+    <!-- Official headpiece -->
+    <rect x="180" y="32" width="24" height="16" fill="#1a1a1a" opacity="0.8" rx="2"/>
+    <line x1="192" y1="30" x2="192" y2="20" stroke="#c03b3b" stroke-width="1" opacity="0.4"/>
+    <path d="M184 30 Q188 22 192 18 Q196 22 200 30" fill="none" stroke="#2c2c2c" stroke-width="0.8" opacity="0.4"/>
+
+    <!-- Face - discerning, sharp gaze -->
+    <ellipse cx="192" cy="82" rx="13" ry="17" fill="#f5f0e8" opacity="0.45"/>
+    <!-- Eyes - penetrating, wise -->
+    <line x1="182" y1="76" x2="190" y2="76" stroke="#1a1a1a" stroke-width="1.8" opacity="0.7"/>
+    <line x1="196" y1="76" x2="204" y2="76" stroke="#1a1a1a" stroke-width="1.8" opacity="0.7"/>
+    <!-- Eyebrows - sharp, refined -->
+    <path d="M179 71 Q186 67 192 71" fill="none" stroke="#1a1a1a" stroke-width="1.5" opacity="0.6"/>
+    <path d="M194 71 Q201 67 207 71" fill="none" stroke="#1a1a1a" stroke-width="1.5" opacity="0.6"/>
+    <!-- Nose -->
+    <path d="M193 74 Q191 81 192 87" fill="none" stroke="#1a1a1a" stroke-width="0.9" opacity="0.45"/>
+    <!-- Mouth - calm, decisive -->
+    <line x1="186" y1="92" x2="199" y2="92" stroke="#1a1a1a" stroke-width="1" opacity="0.5"/>
+
+    <!-- Sleeves - formal, wide -->
+    <path d="M155 105 Q130 118 110 140 Q98 155 102 175 Q112 168 125 155 Q140 138 158 125" fill="#2c2c2c" opacity="0.2"/>
+    <path d="M225 105 Q250 115 270 135 Q280 150 278 168 Q268 162 255 150 Q242 138 228 125" fill="#2c2c2c" opacity="0.2"/>
+
+    <!-- Official belt -->
+    <path d="M158 255 Q195 265 232 255" fill="none" stroke="#2c2c2c" stroke-width="2.5" opacity="0.45"/>
+    <rect x="188" y="257" width="14" height="10" fill="#c03b3b" opacity="0.3" rx="2"/>
+  </g>
+
+  <!-- Ink wash ground shadow -->
+  <ellipse cx="195" cy="448" rx="55" ry="6" fill="#2c2c2c" opacity="0.06"/>
+
+  <!-- Character name -->
+  <text x="200" y="480" text-anchor="middle" font-family="serif" font-size="26" fill="#1a1a1a" opacity="0.8" letter-spacing="6">温天仁</text>
+
+  <!-- Vermillion seal -->
+  <g transform="translate(318, 442)">
+    <rect x="0" y="0" width="34" height="34" fill="#c03b3b" opacity="0.85" rx="3"/>
+    <text x="17" y="14" text-anchor="middle" font-family="serif" font-size="9" fill="#f5f0e8" opacity="0.9">落云</text>
+    <text x="17" y="28" text-anchor="middle" font-family="serif" font-size="9" fill="#f5f0e8" opacity="0.9">宗主</text>
+  </g>
+</svg>

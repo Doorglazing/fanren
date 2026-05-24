@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500">
+  <defs>
+    <filter id="inkWash" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="softBlur">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5f0e8"/>
+      <stop offset="40%" stop-color="#f0e8d5"/>
+      <stop offset="100%" stop-color="#f5f0e8"/>
+    </linearGradient>
+    <linearGradient id="darkWash" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1a1a1a" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#1a1a1a" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rice paper background -->
+  <rect width="400" height="500" fill="url(#bgGrad)"/>
+
+  <!-- Decorative border -->
+  <rect x="12" y="12" width="376" height="476" fill="none" stroke="#2c2c2c" stroke-width="1" opacity="0.5"/>
+  <rect x="16" y="16" width="368" height="468" fill="none" stroke="#2c2c2c" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- Ominous dark clouds -->
+  <g opacity="0.1">
+    <path d="M0 60 Q40 40 80 55 Q120 35 160 50 Q200 30 240 48 Q280 35 320 50 Q360 40 400 55 L400 100 Q350 80 300 92 Q250 75 200 88 Q150 72 100 85 Q50 70 0 82Z" fill="#2c2c2c"/>
+    <ellipse cx="120" cy="110" rx="60" ry="15" fill="#2c2c2c" opacity="0.5"/>
+    <ellipse cx="300" cy="105" rx="50" ry="12" fill="#2c2c2c" opacity="0.5"/>
+  </g>
+
+  <!-- Withered thorny branches -->
+  <g opacity="0.3">
+    <path d="M50 200 Q45 180 55 160 Q65 145 70 150 Q75 160 65 180 Q58 195 60 210" fill="none" stroke="#2c2c2c" stroke-width="2.5"/>
+    <path d="M58 175 Q70 170 78 178" fill="none" stroke="#2c2c2c" stroke-width="1.5"/>
+    <path d="M60 162 Q48 155 42 160" fill="none" stroke="#2c2c2c" stroke-width="1.5"/>
+    <circle cx="78" cy="178" r="2" fill="#c03b3b" opacity="0.4"/>
+    <circle cx="42" cy="160" r="2" fill="#c03b3b" opacity="0.4"/>
+  </g>
+
+  <!-- Demonic cultivator figure -->
+  <g filter="url(#inkWash)">
+    <!-- Robe - dark, imposing -->
+    <path d="M150 110 Q155 105 165 100 Q178 96 190 100 Q202 105 208 112 L212 260 Q215 310 218 360 Q220 400 222 440 L216 446 Q206 450 192 452 Q178 450 168 446 L162 440 Q160 400 157 360 Q155 310 152 260 Q150 190 150 110Z" fill="#1a1a1a" opacity="0.5"/>
+
+    <!-- Dark cloak/collar - spiked -->
+    <path d="M150 110 L140 98 Q135 88 142 82 L155 90 L160 95" fill="#1a1a1a" opacity="0.6"/>
+    <path d="M210 110 L222 98 Q228 88 220 82 L208 90 L203 95" fill="#1a1a1a" opacity="0.6"/>
+
+    <!-- Head -->
+    <path d="M158 110 Q160 88 168 72 Q175 60 185 56 Q195 54 205 58 Q215 65 220 80 Q225 98 222 112 Q215 118 200 120 Q185 118 172 115 Q162 112 158 110Z" fill="#1a1a1a" opacity="0.75"/>
+
+    <!-- Hair - wild, disheveled -->
+    <path d="M168 72 Q160 58 165 48 Q170 40 178 42 L172 52 Q168 62 172 72" fill="#1a1a1a" opacity="0.7"/>
+    <path d="M218 78 Q228 62 225 48 Q220 40 212 42 L218 52 Q222 62 218 72" fill="#1a1a1a" opacity="0.7"/>
+
+    <!-- Face - malevolent -->
+    <ellipse cx="193" cy="95" rx="13" ry="16" fill="#f5f0e8" opacity="0.35"/>
+    <!-- Eyes - sharp, cruel -->
+    <line x1="184" y1="90" x2="191" y2="90" stroke="#1a1a1a" stroke-width="2" opacity="0.75"/>
+    <line x1="197" y1="90" x2="204" y2="90" stroke="#1a1a1a" stroke-width="2" opacity="0.75"/>
+    <!-- Eyebrows - angular, sinister -->
+    <path d="M181 85 Q188 82 193 85" fill="none" stroke="#1a1a1a" stroke-width="1.8" opacity="0.7"/>
+    <path d="M195 85 Q202 82 208 85" fill="none" stroke="#1a1a1a" stroke-width="1.8" opacity="0.7"/>
+    <!-- Nose - sharp -->
+    <path d="M194 88 Q192 96 193 102" fill="none" stroke="#1a1a1a" stroke-width="1" opacity="0.5"/>
+    <!-- Mouth - cruel smirk -->
+    <path d="M186 106 Q191 103 196 106" fill="none" stroke="#2c2c2c" stroke-width="1.2" opacity="0.6"/>
+
+    <!-- Demonic energy swirling -->
+    <path d="M150 200 Q135 220 140 250 Q145 270 155 280" fill="none" stroke="#2c2c2c" stroke-width="1.5" opacity="0.3"/>
+    <path d="M230 190 Q250 210 248 240 Q245 265 235 278" fill="none" stroke="#2c2c2c" stroke-width="1.5" opacity="0.3"/>
+  </g>
+
+  <!-- Demonic script elements -->
+  <g opacity="0.08">
+    <path d="M100 280 Q110 275 120 280 Q125 290 115 295 Q105 292 100 280Z" fill="#c03b3b"/>
+    <path d="M280 300 Q290 295 300 300 Q305 310 295 315 Q285 312 280 300Z" fill="#c03b3b"/>
+    <circle cx="200" cy="400" r="15" fill="none" stroke="#c03b3b" stroke-width="1" opacity="0.3"/>
+  </g>
+
+  <!-- Character name -->
+  <text x="200" y="480" text-anchor="middle" font-family="serif" font-size="28" fill="#1a1a1a" opacity="0.8" letter-spacing="8">王蝉</text>
+
+  <!-- Vermillion seal -->
+  <g transform="translate(318, 442)">
+    <rect x="0" y="0" width="34" height="34" fill="#c03b3b" opacity="0.85" rx="3"/>
+    <text x="17" y="14" text-anchor="middle" font-family="serif" font-size="10" fill="#f5f0e8" opacity="0.9">魔道</text>
+    <text x="17" y="28" text-anchor="middle" font-family="serif" font-size="10" fill="#f5f0e8" opacity="0.9">之印</text>
+  </g>
+</svg>

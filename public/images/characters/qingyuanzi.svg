@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500">
+  <defs>
+    <filter id="inkWash" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="softBlur">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+    <filter id="swordGlow">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5f0e8"/>
+      <stop offset="50%" stop-color="#f0ead5"/>
+      <stop offset="100%" stop-color="#f5f0e8"/>
+    </linearGradient>
+    <linearGradient id="swordWash" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1a1a1a" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#1a1a1a" stop-opacity="0.01"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rice paper background -->
+  <rect width="400" height="500" fill="url(#bgGrad)"/>
+
+  <!-- Decorative border -->
+  <rect x="12" y="12" width="376" height="476" fill="none" stroke="#2c2c2c" stroke-width="1" opacity="0.5"/>
+  <rect x="16" y="16" width="368" height="468" fill="none" stroke="#2c2c2c" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- Ancient sword aura background -->
+  <g opacity="0.06">
+    <path d="M200 40 Q260 80 280 150 Q300 220 280 300 Q260 380 200 420" fill="none" stroke="#2c2c2c" stroke-width="1.5"/>
+    <path d="M200 40 Q140 80 120 150 Q100 220 120 300 Q140 380 200 420" fill="none" stroke="#2c2c2c" stroke-width="1.5"/>
+    <path d="M200 60 Q230 100 245 160 Q260 240 230 320 Q215 370 200 400" fill="none" stroke="#2c2c2c" stroke-width="1"/>
+    <path d="M200 60 Q170 100 155 160 Q140 240 170 320 Q185 370 200 400" fill="none" stroke="#2c2c2c" stroke-width="1"/>
+  </g>
+
+  <!-- Bamboo (symbol of integrity, sword-like) -->
+  <g opacity="0.25">
+    <line x1="55" y1="160" x2="55" y2="440" stroke="#2c2c2c" stroke-width="3"/>
+    <line x1="55" y1="220" x2="55" y2="220" stroke="#2c2c2c" stroke-width="1"/>
+    <line x1="55" y1="300" x2="55" y2="300" stroke="#2c2c2c" stroke-width="1"/>
+    <line x1="55" y1="380" x2="55" y2="380" stroke="#2c2c2c" stroke-width="1"/>
+    <!-- Bamboo leaves shaped like swords -->
+    <path d="M57 220 Q65 208 75 212 Q63 214 57 220Z" fill="#2c2c2c" opacity="0.5"/>
+    <path d="M57 220 Q68 205 78 208 Q64 212 57 220Z" fill="#2c2c2c" opacity="0.4"/>
+    <path d="M57 300 Q65 288 78 292 Q63 296 57 300Z" fill="#2c2c2c" opacity="0.5"/>
+    <path d="M57 380 Q66 368 76 372 Q64 374 57 380Z" fill="#2c2c2c" opacity="0.4"/>
+  </g>
+
+  <!-- Floating swords -->
+  <g opacity="0.2">
+    <line x1="300" y1="260" x2="320" y2="310" stroke="#2c2c2c" stroke-width="1.5"/>
+    <line x1="310" y1="258" x2="330" y2="308" stroke="#2c2c2c" stroke-width="1"/>
+    <path d="M316 256 L320 246 L324 256Z" fill="#2c2c2c"/>
+    <path d="M326 306 L330 316 L336 306Z" fill="#2c2c2c"/>
+  </g>
+
+  <!-- Ancient sword cultivator figure -->
+  <g filter="url(#inkWash)">
+    <!-- Robe body - upright, like a sword -->
+    <path d="M155 90 Q160 83 170 76 Q182 72 195 74 Q208 78 218 86 Q225 95 225 102 L228 255 Q230 310 232 360 Q234 410 236 440 L230 446 Q220 450 200 452 Q182 450 172 446 L166 440 Q164 410 162 360 Q160 310 158 255 Q155 180 155 130 Q155 105 155 90Z" fill="#1a1a1a" opacity="0.38"/>
+
+    <!-- Sword-like posture - shoulders squared -->
+    <path d="M155 100 Q135 110 118 125 Q108 135 112 150 Q122 142 138 130 Q150 118 158 108Z" fill="#2c2c2c" opacity="0.28"/>
+    <path d="M225 100 Q245 110 262 122 Q272 130 268 145 Q258 138 242 128 Q232 118 222 110Z" fill="#2c2c2c" opacity="0.28"/>
+
+    <!-- Head - ancient, noble -->
+    <path d="M165 90 Q168 68 178 52 Q186 40 196 38 Q208 40 215 52 Q225 68 228 88 Q222 96 212 100 Q200 102 185 100 Q172 98 167 95 Q163 93 165 90Z" fill="#1a1a1a" opacity="0.7"/>
+
+    <!-- Sword cultivator crown -->
+    <path d="M188 38 L185 25 Q186 18 192 16 L196 18 Q198 22 195 28 L194 38" fill="none" stroke="#2c2c2c" stroke-width="1.5" opacity="0.5"/>
+    <circle cx="191" cy="18" r="2" fill="#c03b3b" opacity="0.4"/>
+
+    <!-- Flowing hair of ancient cultivator -->
+    <path d="M175 55 Q165 70 162 90 Q160 110 158 130" fill="none" stroke="#1a1a1a" stroke-width="3" opacity="0.35"/>
+    <path d="M218 55 Q228 68 230 85 Q232 105 230 120" fill="none" stroke="#1a1a1a" stroke-width="3" opacity="0.35"/>
+
+    <!-- Face - noble, detached -->
+    <ellipse cx="197" cy="82" rx="14" ry="17" fill="#f5f0e8" opacity="0.45"/>
+    <!-- Eyes - calm, profound, sword-like focus -->
+    <line x1="187" y1="76" x2="195" y2="76" stroke="#1a1a1a" stroke-width="2" opacity="0.7"/>
+    <line x1="201" y1="76" x2="209" y2="76" stroke="#1a1a1a" stroke-width="2" opacity="0.7"/>
+    <!-- Eyebrows - straight, sword-like -->
+    <path d="M184 71 Q192 68 198 71" fill="none" stroke="#1a1a1a" stroke-width="1.5" opacity="0.65"/>
+    <path d="M198 71 Q206 68 212 71" fill="none" stroke="#1a1a1a" stroke-width="1.5" opacity="0.65"/>
+    <!-- Nose -->
+    <path d="M198 74 Q196 81 197 87" fill="none" stroke="#1a1a1a" stroke-width="1" opacity="0.45"/>
+    <!-- Mouth - serene -->
+    <line x1="191" y1="92" x2="203" y2="92" stroke="#1a1a1a" stroke-width="1" opacity="0.5"/>
+
+    <!-- Sword in hand / floating -->
+    <g transform="translate(240, 200) rotate(-20)">
+      <line x1="0" y1="0" x2="0" y2="60" stroke="#2c2c2c" stroke-width="2"/>
+      <path d="M-4 0 L0 -6 L4 0Z" fill="#2c2c2c" opacity="0.5"/>
+      <line x1="0" y1="55" x2="0" y2="60" stroke="#c03b3b" stroke-width="0.8" opacity="0.4"/>
+    </g>
+
+    <!-- Belt -->
+    <path d="M162 250 Q198 258 232 250" fill="none" stroke="#2c2c2c" stroke-width="2" opacity="0.4"/>
+  </g>
+
+  <!-- Sword qi aura -->
+  <g opacity="0.04">
+    <ellipse cx="200" cy="250" rx="70" ry="60" fill="#2c2c2c"/>
+  </g>
+
+  <!-- Character name -->
+  <text x="200" y="480" text-anchor="middle" font-family="serif" font-size="26" fill="#1a1a1a" opacity="0.8" letter-spacing="6">青元子</text>
+
+  <!-- Vermillion seal -->
+  <g transform="translate(318, 442)">
+    <rect x="0" y="0" width="34" height="34" fill="#c03b3b" opacity="0.85" rx="3"/>
+    <text x="17" y="14" text-anchor="middle" font-family="serif" font-size="9" fill="#f5f0e8" opacity="0.9">青元</text>
+    <text x="17" y="28" text-anchor="middle" font-family="serif" font-size="9" fill="#f5f0e8" opacity="0.9">剑诀</text>
+  </g>
+</svg>

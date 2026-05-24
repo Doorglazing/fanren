@@ -1,0 +1,11 @@
+.footer { padding: 3rem 2rem 2rem; text-align: center; background: var(--parchment); border-top: 1px solid rgba(0,0,0,0.06); }
+.inner { max-width: var(--content-max); margin: 0 auto; }
+.viewBadge { display: flex; justify-content: center; margin-bottom: 1.5rem; }
+.viewBadgeInner { display: flex; align-items: baseline; gap: 0.5rem; padding: 0.5rem 1.5rem; background: var(--rice-paper); border: 1px solid var(--vermillion); outline: 1px solid var(--vermillion); outline-offset: 3px; }
+.viewLabel { font-family: var(--font-display); font-size: 1rem; color: var(--ink-medium); letter-spacing: 0.1em; }
+.viewNumber { font-family: var(--font-display); font-size: 1.6rem; color: var(--vermillion); letter-spacing: 0.06em; font-weight: bold; }
+.divider { height: 1px; background: linear-gradient(90deg, transparent, var(--ink-faint), transparent); margin-bottom: 1.5rem; }
+.content { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 0.5rem; }
+.text { font-family: var(--font-display); font-size: 0.95rem; color: var(--ink-light); letter-spacing: 0.12em; }
+.separator { color: var(--vermillion); font-size: 0.5rem; }
+.copyright { font-size: 0.75rem; color: var(--ink-faint); font-family: var(--font-body); }

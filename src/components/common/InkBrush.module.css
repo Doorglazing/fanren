@@ -1,0 +1,30 @@
+.container {
+  width: 100%;
+  overflow: hidden;
+  padding: 1rem 0;
+}
+
+.brush {
+  display: block;
+}
+
+.brush path {
+  transition: opacity 0.6s ease;
+}
+
+.animated .accentStroke {
+  animation: brushDraw 1.2s ease-out forwards;
+}
+
+@keyframes brushDraw {
+  0% {
+    stroke-dashoffset: 1000;
+    stroke-dasharray: 1000;
+    opacity: 0.25;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 1000;
+    opacity: 0.25;
+  }
+}

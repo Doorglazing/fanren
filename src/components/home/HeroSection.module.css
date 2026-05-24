@@ -1,0 +1,126 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Dark overlay so text is readable on video */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 0;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 2rem;
+}
+
+.titleGroup {
+  margin-bottom: 2rem;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  gap: 0.4em;
+  margin-bottom: 0.5rem;
+}
+
+.titleChar {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 5.5rem);
+  color: #fff;
+  display: inline-block;
+  text-shadow: 0 0 40px rgba(192, 59, 59, 0.5), 0 0 80px rgba(196, 168, 75, 0.3);
+}
+
+.subtitle {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--gold-light);
+  letter-spacing: 0.6em;
+  margin-top: 0.25rem;
+  text-shadow: 0 0 20px rgba(196, 168, 75, 0.4);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.dividerLine {
+  display: block;
+  width: 50px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+}
+
+.dividerDot {
+  width: 5px;
+  height: 5px;
+  background: var(--vermillion);
+  border-radius: 50%;
+}
+
+.desc, .desc2 {
+  font-family: var(--font-body);
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.08em;
+  line-height: 2;
+  text-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.desc {
+  font-size: 1.1rem;
+}
+
+.desc2 {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.7);
+}
+
+.seal {
+  display: inline-block;
+}
+
+.scrollHint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 1;
+  animation: floatUp 2s ease-in-out infinite;
+}
+
+.scrollHintText {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.2em;
+}
+
+.scrollHintArrow {
+  font-size: 0.6rem;
+  color: rgba(255,255,255,0.5);
+}
+
+@keyframes floatUp {
+  0%, 100% { opacity: 0.4; transform: translateX(-50%) translateY(0); }
+  50% { opacity: 1; transform: translateX(-50%) translateY(-8px); }
+}

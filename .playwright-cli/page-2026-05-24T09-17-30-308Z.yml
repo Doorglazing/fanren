@@ -1,0 +1,199 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link "凡人修仙传 人界篇" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e6]: 凡人修仙传
+        - generic [ref=e7]: 人界篇
+      - navigation [ref=e8]:
+        - link "首页" [ref=e9] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e10]: 首页
+        - link "时间线" [ref=e12] [cursor=pointer]:
+          - /url: /timeline
+          - generic [ref=e13]: 时间线
+        - link "法宝" [ref=e14] [cursor=pointer]:
+          - /url: /artifacts
+          - generic [ref=e15]: 法宝
+        - link "人物" [ref=e16] [cursor=pointer]:
+          - /url: /characters
+          - generic [ref=e17]: 人物
+        - link "天机阁" [ref=e18] [cursor=pointer]:
+          - /url: /tianji
+          - generic [ref=e19]: 天机阁
+        - button "播放音乐" [ref=e20] [cursor=pointer]:
+          - img [ref=e21]:
+            - generic [ref=e23]: ♪
+  - main [ref=e24]:
+    - generic [ref=e26]:
+      - generic [ref=e27]:
+        - generic [ref=e28]:
+          - generic [ref=e29]:
+            - generic [ref=e30]:
+              - heading "凡 人 修 仙 传" [level=1] [ref=e31]:
+                - generic [ref=e32]: 凡
+                - generic [ref=e33]: 人
+                - generic [ref=e34]: 修
+                - generic [ref=e35]: 仙
+                - generic [ref=e36]: 传
+              - generic [ref=e37]: 人界篇
+              - paragraph [ref=e42]: 资质平庸的山村少年，意外踏入修仙之途
+              - paragraph [ref=e43]: 步步为营，以凡人之躯，证道长生
+            - generic:
+              - img:
+                - generic: 韩 立
+          - generic [ref=e44]:
+            - generic [ref=e45]: 向下探索
+            - generic [ref=e46]: ▼
+        - generic [ref=e49]:
+          - generic [ref=e50]: 重磅回归
+          - heading "慕兰之战" [level=2] [ref=e51]
+          - paragraph [ref=e52]: 年番复播 · 荣耀归来
+          - generic [ref=e53]: 2026 年 6 月 13 日
+          - generic [ref=e54]:
+            - generic [ref=e55]:
+              - generic [ref=e56]: "19"
+              - generic [ref=e57]: 天
+            - generic [ref=e58]:
+              - generic [ref=e59]: "18"
+              - generic [ref=e60]: 时
+            - generic [ref=e61]:
+              - generic [ref=e62]: "42"
+              - generic [ref=e63]: 分
+            - generic [ref=e64]:
+              - generic [ref=e65]: "30"
+              - generic [ref=e66]: 秒
+          - paragraph [ref=e67]: 韩立元婴大成，慕兰大战一触即发。新篇章、新建模、新特效 —— 国漫天花板荣耀归来。
+          - link "▶ 前往 B 站观看凡人修仙传 →" [ref=e68] [cursor=pointer]:
+            - /url: https://www.bilibili.com/bangumi/play/ep733316?spm_id_from=333.337.0.0&from_spmid=666.25.episode.0
+            - generic [ref=e69]: ▶
+            - text: 前往 B 站观看凡人修仙传
+            - generic [ref=e70]: →
+        - img [ref=e72]
+        - generic [ref=e75]:
+          - generic [ref=e77]:
+            - heading "荣誉殿堂" [level=2] [ref=e78]
+            - paragraph [ref=e83]: 国漫标杆的荣耀之路
+          - generic [ref=e84]:
+            - generic [ref=e86]:
+              - generic [ref=e87]: "2022"
+              - heading "国风传承奖" [level=3] [ref=e88]
+              - paragraph [ref=e89]: 第19届中国动漫金龙奖 (CACC)
+              - paragraph [ref=e90]: 以精致3D技术呈现中国传统修仙文化，获金龙奖特别设立的国风传承奖项。
+            - generic [ref=e92]:
+              - generic [ref=e93]: "2025"
+              - heading "年度国漫IP" [level=3] [ref=e94]
+              - paragraph [ref=e95]: 微博文化之夜盛典
+              - paragraph [ref=e96]: 凭借现象级影响力与口碑，荣获微博年度国漫IP大奖。
+            - generic [ref=e98]:
+              - generic [ref=e99]: "2025"
+              - heading "最佳3D动画大奖" [level=3] [ref=e100]
+              - paragraph [ref=e101]: 第30届亚洲电视大奖
+              - paragraph [ref=e102]: 亚洲电视大奖最佳3D动画，代表中国3D动画技术的最高水平。
+            - generic [ref=e104]:
+              - generic [ref=e105]: "2025"
+              - heading "最佳剧情奖" [level=3] [ref=e106]
+              - paragraph [ref=e107]: 2025年度国漫年番颁奖典礼
+              - paragraph [ref=e108]: 凭借"韩立结婴"等经典剧情，获得年度最佳剧情奖。
+            - generic [ref=e110]:
+              - generic [ref=e111]: "2025"
+              - heading "央视纪录片展示案例" [level=3] [ref=e112]
+              - paragraph [ref=e113]: 央视《大国基石》
+              - paragraph [ref=e114]: 作为中国动画工业化代表作品，入选央视纪录片《大国基石》展示案例。
+            - generic [ref=e116]:
+              - generic [ref=e117]: "2025"
+              - heading "Netflix海外周榜 TOP 1" [level=3] [ref=e118]
+              - paragraph [ref=e119]: Netflix
+              - paragraph [ref=e120]: 海外播出登顶Netflix剧集周榜第一名，海外流媒体累计播放量突破2亿次。
+            - generic [ref=e122]:
+              - generic [ref=e123]: "2025"
+              - heading "国漫众筹纪录保持者" [level=3] [ref=e124]
+              - paragraph [ref=e125]: Bilibili会员购
+              - paragraph [ref=e126]: 周边众筹金额突破4025万元，创下国产动画众筹历史最高纪录。
+            - generic [ref=e128]:
+              - generic [ref=e129]: "2024"
+              - heading "B站国创区收视第一" [level=3] [ref=e130]
+              - paragraph [ref=e131]: Bilibili
+              - paragraph [ref=e132]: 2023-2024年连续两年蝉联B站国创区年度收视冠军。
+        - img [ref=e134]
+        - generic [ref=e137]:
+          - generic [ref=e139]:
+            - heading "数据概览" [level=2] [ref=e140]
+            - paragraph [ref=e145]: B站国创现象级作品
+          - generic [ref=e146]:
+            - generic [ref=e147]:
+              - generic [ref=e149]: "0"
+              - text: 系列累计播放量
+            - generic [ref=e150]:
+              - generic [ref=e152]: "0"
+              - text: B站追番人数
+            - generic [ref=e153]:
+              - generic [ref=e154]:
+                - generic [ref=e155]: "0.0"
+                - generic [ref=e156]: / 10.0
+              - text: B站评分
+            - generic [ref=e157]:
+              - generic [ref=e158]:
+                - generic [ref=e159]: "0.0"
+                - generic [ref=e160]: / 10.0
+              - text: 豆瓣评分
+            - generic [ref=e161]:
+              - generic [ref=e162]:
+                - generic [ref=e163]: "0"
+                - generic [ref=e164]: 集
+              - text: 已播出集数
+            - generic [ref=e165]:
+              - generic [ref=e167]: 约 5 年 10 个月
+              - text: 开播至今 · 2020年7月25日
+        - img [ref=e169]
+        - generic [ref=e173]:
+          - generic [ref=e175]:
+            - heading "故事简介" [level=2] [ref=e176]
+            - generic [ref=e181]:
+              - paragraph [ref=e182]: 一个出身平凡的穷小子，资质普通却心志坚韧。在尔虞我诈、弱肉强食的修仙世界中，他靠着坚定的意志与过人的心智，一步步走向巅峰。
+              - paragraph [ref=e183]: 从七玄门到黄枫谷，从乱星海到大晋，韩立用他的"韩跑跑"式谨慎与"韩老魔"式狠辣，书写了一段最励志的凡人修仙传奇。
+              - paragraph [ref=e184]: 人界篇，是这一切传奇的起点。
+          - generic [ref=e185]:
+            - generic [ref=e187]:
+              - generic [ref=e188]: "01"
+              - heading "B站镇站之宝" [level=3] [ref=e189]
+              - paragraph [ref=e190]: 年番鼻祖，B站国创区收视连续两年第一，追番人数突破1500万
+            - generic [ref=e192]:
+              - generic [ref=e193]: "02"
+              - heading "3D国漫天花板" [level=3] [ref=e194]
+              - paragraph [ref=e195]: 电影级画质，动作捕捉技术，第30届亚洲电视大奖最佳3D动画
+            - generic [ref=e197]:
+              - generic [ref=e198]: "03"
+              - heading "韩立IP现象" [level=3] [ref=e199]
+              - paragraph [ref=e200]: "\"韩立结婴\"单集在线破44万，冲崩B站服务器，登上微博热搜"
+            - generic [ref=e202]:
+              - generic [ref=e203]: "04"
+              - heading "中华文化出海" [level=3] [ref=e204]
+              - paragraph [ref=e205]: Netflix海外周榜TOP 1，海外播放量突破2亿次
+        - generic [ref=e207]:
+          - generic [ref=e208]:
+            - heading "道友留言" [level=2] [ref=e209]
+            - generic [ref=e210]: 0 条留言
+            - button "最新" [ref=e211] [cursor=pointer]
+            - button "最热" [ref=e212] [cursor=pointer]
+          - generic [ref=e213]:
+            - textbox "道号（可选，8字内）" [ref=e214]
+            - generic [ref=e215]:
+              - textbox "留下你的修仙感悟…（最多100字）" [ref=e216]
+              - generic [ref=e217]: 0/100
+            - button "发送传音符" [ref=e218] [cursor=pointer]
+          - paragraph [ref=e220]: 暂无留言，留下第一条修仙感悟吧 ✦
+          - button "🔑 管理" [ref=e222] [cursor=pointer]
+      - button "？" [ref=e223] [cursor=pointer]
+      - button "更新日志" [ref=e224] [cursor=pointer]
+  - contentinfo [ref=e225]:
+    - generic [ref=e226]:
+      - generic [ref=e228]:
+        - generic [ref=e229]: 已有
+        - generic [ref=e230]: —
+        - generic [ref=e231]: 位道友云游至此
+      - generic [ref=e233]:
+        - generic [ref=e234]: 凡人修仙传 · 人界篇
+        - generic [ref=e235]: ◇
+        - generic [ref=e236]: 韩立修仙之路
+      - paragraph [ref=e237]: 本网站为粉丝自制宣传站，内容来源网络，版权归原作者及平台所有

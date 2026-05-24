@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500">
+  <defs>
+    <filter id="inkWash" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="softBlur">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5f0e8"/>
+      <stop offset="50%" stop-color="#f2ecd8"/>
+      <stop offset="100%" stop-color="#f5f0e8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rice paper background -->
+  <rect width="400" height="500" fill="url(#bgGrad)"/>
+
+  <!-- Decorative border -->
+  <rect x="12" y="12" width="376" height="476" fill="none" stroke="#2c2c2c" stroke-width="1" opacity="0.5"/>
+  <rect x="16" y="16" width="368" height="468" fill="none" stroke="#2c2c2c" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- Grand mountain backdrop -->
+  <path d="M0 250 Q60 180 130 200 Q190 150 250 180 Q310 140 370 190 Q400 170 400 210 L400 500 L0 500Z" fill="#2c2c2c" opacity="0.05"/>
+
+  <!-- Crane symbol - longevity -->
+  <g opacity="0.2" transform="translate(290, 90)">
+    <path d="M0 20 Q10 5 22 10 Q30 15 32 25 Q26 32 16 34 Q6 32 0 20Z" fill="#2c2c2c"/>
+    <path d="M12 18 Q6 10 16 5 Q20 12 16 18Z" fill="#2c2c2c"/>
+    <line x1="28" y1="14" x2="40" y2="22" stroke="#2c2c2c" stroke-width="1"/>
+    <line x1="18" y1="28" x2="12" y2="42" stroke="#2c2c2c" stroke-width="0.8"/>
+    <line x1="24" y1="30" x2="28" y2="44" stroke="#2c2c2c" stroke-width="0.8"/>
+  </g>
+
+  <!-- Pine trees -->
+  <g opacity="0.2">
+    <line x1="50" y1="280" x2="50" y2="400" stroke="#2c2c2c" stroke-width="3"/>
+    <path d="M50 320 Q35 310 25 318" fill="none" stroke="#2c2c2c" stroke-width="2"/>
+    <path d="M50 350 Q68 338 78 345" fill="none" stroke="#2c2c2c" stroke-width="2"/>
+    <path d="M50 300 Q35 292 25 298" fill="none" stroke="#2c2c2c" stroke-width="1.8"/>
+  </g>
+
+  <!-- Elderly cultivator - upright, dignified -->
+  <g filter="url(#inkWash)">
+    <!-- Robe body - formal, imposing -->
+    <path d="M155 100 Q160 95 170 90 Q182 86 195 90 Q208 95 212 102 L215 260 Q218 310 220 360 Q222 410 224 440 L218 446 Q208 450 192 452 Q178 450 168 446 L162 440 Q160 410 157 360 Q155 310 152 260 Q150 180 152 130 Q153 112 155 100Z" fill="#1a1a1a" opacity="0.4"/>
+
+    <!-- Formal collar -->
+    <path d="M155 100 L162 88 L175 95 L185 100" fill="#1a1a1a" opacity="0.55"/>
+    <path d="M212 100 L222 88 L215 82 L205 88" fill="#1a1a1a" opacity="0.55"/>
+
+    <!-- Head - elderly, wise -->
+    <path d="M160 100 Q163 78 172 62 Q180 50 192 48 Q204 50 212 62 Q220 76 220 98 Q218 106 210 110 Q200 112 190 110 Q175 108 165 105 Q158 102 155 100Z" fill="#1a1a1a" opacity="0.7"/>
+
+    <!-- Topknot/crown -->
+    <ellipse cx="190" cy="45" rx="10" ry="8" fill="#1a1a1a" opacity="0.8"/>
+    <path d="M190 37 Q196 30 200 35" fill="none" stroke="#c03b3b" stroke-width="1" opacity="0.5"/>
+
+    <!-- Long flowing beard - white/gray -->
+    <path d="M175 105 Q170 125 168 150 Q165 175 163 200" fill="none" stroke="#1a1a1a" stroke-width="3" opacity="0.45"/>
+    <path d="M188 108 Q188 130 187 155 Q186 180 185 205" fill="none" stroke="#1a1a1a" stroke-width="3" opacity="0.42"/>
+    <path d="M203 105 Q206 125 207 148 Q208 170 207 190" fill="none" stroke="#1a1a1a" stroke-width="2.5" opacity="0.4"/>
+
+    <!-- Face - aged, strict but fair -->
+    <ellipse cx="190" cy="88" rx="14" ry="18" fill="#f5f0e8" opacity="0.4"/>
+    <!-- Eyes - sharp, discerning -->
+    <line x1="180" y1="82" x2="188" y2="82" stroke="#1a1a1a" stroke-width="2" opacity="0.7"/>
+    <line x1="194" y1="82" x2="202" y2="82" stroke="#1a1a1a" stroke-width="2" opacity="0.7"/>
+    <!-- Eyebrows - long, white -->
+    <path d="M176 77 Q184 72 190 76" fill="none" stroke="#1a1a1a" stroke-width="1.5" opacity="0.6"/>
+    <path d="M192 76 Q200 72 206 77" fill="none" stroke="#1a1a1a" stroke-width="1.5" opacity="0.6"/>
+    <!-- Nose -->
+    <path d="M191 80 Q189 87 190 93" fill="none" stroke="#1a1a1a" stroke-width="1" opacity="0.5"/>
+    <!-- Mouth hidden in beard -->
+
+    <!-- Wrinkles of age -->
+    <path d="M178 96 Q180 98 178 100" fill="none" stroke="#2c2c2c" stroke-width="0.6" opacity="0.3"/>
+    <path d="M202 96 Q204 98 202 100" fill="none" stroke="#2c2c2c" stroke-width="0.6" opacity="0.3"/>
+
+    <!-- Formal belt with jade -->
+    <path d="M160 260 Q195 268 228 260" fill="none" stroke="#2c2c2c" stroke-width="2.5" opacity="0.5"/>
+    <circle cx="195" cy="264" r="5" fill="#f5f0e8" stroke="#2c2c2c" stroke-width="0.8" opacity="0.4"/>
+    <circle cx="195" cy="264" r="3" fill="#c03b3b" opacity="0.2"/>
+  </g>
+
+  <!-- Spirit energy (正气) -->
+  <g opacity="0.06">
+    <circle cx="195" cy="60" r="40" fill="#2c2c2c"/>
+  </g>
+
+  <!-- Character name -->
+  <text x="200" y="480" text-anchor="middle" font-family="serif" font-size="26" fill="#1a1a1a" opacity="0.8" letter-spacing="5">令狐老祖</text>
+
+  <!-- Vermillion seal -->
+  <g transform="translate(318, 442)">
+    <rect x="0" y="0" width="34" height="34" fill="#c03b3b" opacity="0.85" rx="3"/>
+    <text x="17" y="14" text-anchor="middle" font-family="serif" font-size="9" fill="#f5f0e8" opacity="0.9">黄枫</text>
+    <text x="17" y="28" text-anchor="middle" font-family="serif" font-size="9" fill="#f5f0e8" opacity="0.9">老祖</text>
+  </g>
+</svg>

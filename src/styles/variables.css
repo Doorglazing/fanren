@@ -1,0 +1,31 @@
+/* ===== CSS Variables ===== */
+:root {
+  /* 墨色系 */
+  --ink-full: #0d0d0d;
+  --ink-heavy: #1a1a1a;
+  --ink-medium: #3d3d3d;
+  --ink-light: #6b6b6b;
+  --ink-faint: #a0a0a0;
+
+  /* 强调色 */
+  --vermillion: #c03b3b;
+  --vermillion-dark: #8b1a1a;
+  --gold: #c4a84b;
+  --gold-light: #e8d48b;
+  --jade: #5b8c5a;
+  --celadon: #b5c9b0;
+
+  /* 背景色调 */
+  --parchment: #f5f0e8;
+  --parchment-dark: #e8dfd0;
+  --rice-paper: #fafaf7;
+
+  /* 间距 */
+  --space-section: 6rem;
+  --space-block: 2rem;
+  --content-max: 1200px;
+
+  /* 字体 */
+  --font-display: 'Ma Shan Zheng', 'ZCOOL KuaiLe', 'Noto Serif SC', serif;
+  --font-body: 'Noto Serif SC', 'Source Han Serif SC', serif;
+}

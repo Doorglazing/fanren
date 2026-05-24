@@ -1,0 +1,27 @@
+.page { padding: 2rem; max-width: 860px; margin: 0 auto; }
+.back { display: inline-block; font-family: var(--font-display); color: var(--ink-light); letter-spacing: 0.06em; margin-bottom: 1.5rem; transition: color 0.3s ease; text-decoration: none; }
+.back:hover { color: var(--vermillion); }
+.notFound { text-align: center; padding: 6rem 2rem; font-family: var(--font-display); color: var(--ink-faint); font-size: 1.2rem; }
+.profile { display: grid; grid-template-columns: 200px 1fr; gap: 2rem; align-items: start; }
+.portrait { width: 100%; aspect-ratio: 3/4; background: linear-gradient(135deg, var(--parchment-dark) 0%, var(--parchment) 100%); border: 1px solid rgba(0,0,0,0.08); overflow: hidden; }
+.portraitImg { width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; filter: grayscale(0.3) contrast(0.9); }
+.portraitEmpty { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 3rem; color: var(--ink-faint); opacity: 0.3; letter-spacing: 0.1em; }
+.main { min-width: 0; }
+.head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+.name { font-size: 2.2rem; letter-spacing: 0.1em; }
+.aliases { font-size: 0.85rem; color: var(--ink-faint); margin-top: 0.25rem; }
+.status { font-family: var(--font-display); font-size: 0.85rem; padding: 0.2rem 0.8rem; border-radius: 3px; letter-spacing: 0.06em; white-space: nowrap; }
+.statusAlive { color: var(--jade); border: 1px solid var(--jade); }
+.statusDeparted { color: var(--gold); border: 1px solid var(--gold); }
+.statusDeceased { color: var(--ink-faint); border: 1px solid var(--ink-faint); }
+.meta { display: flex; gap: 2rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(0,0,0,0.06); }
+.metaItem { font-size: 0.9rem; color: var(--ink-medium); }
+.metaItem strong { font-family: var(--font-display); color: var(--ink-light); margin-right: 0.4rem; font-size: 0.8rem; }
+.section { margin-bottom: 1.5rem; }
+.sectionTitle { font-size: 1.05rem; color: var(--vermillion); letter-spacing: 0.06em; margin-bottom: 0.5rem; font-family: var(--font-display); border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 0.3rem; }
+.text { font-size: 1rem; color: var(--ink-medium); line-height: 1.9; text-indent: 2em; }
+.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tag { font-size: 0.8rem; color: var(--jade); font-family: var(--font-display); letter-spacing: 0.04em; padding: 0.2rem 0.6rem; background: rgba(91,140,90,0.06); border: 1px solid rgba(91,140,90,0.15); }
+.endingSection { background: rgba(192,59,59,0.04); border-left: 3px solid var(--vermillion); padding: 1rem 1.25rem; border-radius: 0 4px 4px 0; }
+.endingSection .sectionTitle { color: var(--vermillion-dark); border-bottom: none; }
+@media (max-width: 600px) { .profile { grid-template-columns: 1fr; } }

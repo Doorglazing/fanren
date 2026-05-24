@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500">
+  <defs>
+    <filter id="inkWash" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="softBlur">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5f0e8"/>
+      <stop offset="50%" stop-color="#f0e8d2"/>
+      <stop offset="100%" stop-color="#f5f0e8"/>
+    </linearGradient>
+    <linearGradient id="cloudGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2c2c2c" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#2c2c2c" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rice paper background -->
+  <rect width="400" height="500" fill="url(#bgGrad)"/>
+
+  <!-- Decorative border -->
+  <rect x="12" y="12" width="376" height="476" fill="none" stroke="#2c2c2c" stroke-width="1" opacity="0.5"/>
+  <rect x="16" y="16" width="368" height="468" fill="none" stroke="#2c2c2c" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- Ancient clouds (祥云) -->
+  <g opacity="0.12">
+    <path d="M40 80 Q60 55 85 65 Q100 55 115 70 Q125 85 110 95 Q95 100 80 95 Q60 90 40 80Z" fill="none" stroke="#2c2c2c" stroke-width="1.5"/>
+    <path d="M270 50 Q295 30 320 40 Q335 30 345 48 Q350 62 335 68 Q320 70 305 65 Q285 58 270 50Z" fill="none" stroke="#2c2c2c" stroke-width="1.5"/>
+    <path d="M50 120 Q65 108 80 115 Q95 108 100 120 Q105 132 90 138 Q75 140 65 135 Q52 128 50 120Z" fill="none" stroke="#2c2c2c" stroke-width="1"/>
+  </g>
+
+  <!-- Mountain silhouette -->
+  <path d="M0 280 Q50 200 100 240 Q150 180 200 220 Q250 170 300 230 Q350 190 400 250 L400 500 L0 500Z" fill="#2c2c2c" opacity="0.05"/>
+
+  <!-- Ancient pine tree (symbol of endurance) -->
+  <g opacity="0.25">
+    <line x1="340" y1="280" x2="340" y2="420" stroke="#2c2c2c" stroke-width="4"/>
+    <path d="M340 300 Q320 285 300 295" fill="none" stroke="#2c2c2c" stroke-width="3"/>
+    <path d="M340 340 Q365 325 380 335" fill="none" stroke="#2c2c2c" stroke-width="2.5"/>
+    <!-- Pine needles -->
+    <path d="M310 290 Q300 280 295 285" fill="none" stroke="#2c2c2c" stroke-width="1"/>
+    <path d="M310 295 Q298 290 292 298" fill="none" stroke="#2c2c2c" stroke-width="1"/>
+    <path d="M375 330 Q385 322 388 328" fill="none" stroke="#2c2c2c" stroke-width="1"/>
+    <path d="M372 338 Q382 330 385 338" fill="none" stroke="#2c2c2c" stroke-width="1"/>
+  </g>
+
+  <!-- Ancient cultivator figure - imposing, arrogant -->
+  <g filter="url(#inkWash)">
+    <!-- Robe body - upright, proud -->
+    <path d="M160 110 Q165 105 175 100 Q188 96 200 100 Q212 105 215 112 L218 250 Q220 300 223 350 Q225 400 228 430 L222 436 Q212 440 198 442 Q185 440 175 436 L170 430 Q168 400 165 350 Q162 300 160 250 Q157 180 160 110Z" fill="#1a1a1a" opacity="0.4"/>
+
+    <!-- Broad shoulders -->
+    <path d="M160 115 Q140 125 120 140 Q108 152 112 168 Q120 160 135 148 Q150 135 163 125Z" fill="#2c2c2c" opacity="0.3"/>
+    <path d="M215 115 Q238 122 255 135 Q268 148 265 162 Q256 155 242 145 Q228 135 218 125Z" fill="#2c2c2c" opacity="0.3"/>
+
+    <!-- Head - wise, ancient -->
+    <path d="M165 110 Q168 90 178 72 Q185 62 195 58 Q205 58 215 65 Q225 75 228 92 Q230 108 225 114 Q218 118 205 120 Q192 118 178 115 Q170 112 165 110Z" fill="#1a1a1a" opacity="0.7"/>
+
+    <!-- Topknot / crown -->
+    <rect x="186" y="45" width="20" height="18" fill="#1a1a1a" opacity="0.8" rx="3"/>
+    <path d="M192 45 L188 32 Q186 25 192 22 L196 25 L200 28" fill="none" stroke="#c03b3b" stroke-width="1.2" opacity="0.6"/>
+
+    <!-- Long beard - sign of wisdom -->
+    <path d="M180 118 Q175 135 172 155 Q170 175 168 195" fill="none" stroke="#1a1a1a" stroke-width="2.5" opacity="0.5"/>
+    <path d="M195 120 Q196 140 197 165 Q198 185 197 205" fill="none" stroke="#1a1a1a" stroke-width="2.5" opacity="0.45"/>
+    <path d="M210 118 Q215 135 218 155 Q220 170 220 185" fill="none" stroke="#1a1a1a" stroke-width="2" opacity="0.4"/>
+
+    <!-- Face - dignified -->
+    <ellipse cx="196" cy="98" rx="14" ry="18" fill="#f5f0e8" opacity="0.45"/>
+    <!-- Eyes - proud, slightly narrowed -->
+    <line x1="186" y1="93" x2="194" y2="93" stroke="#1a1a1a" stroke-width="2" opacity="0.7"/>
+    <line x1="200" y1="93" x2="208" y2="93" stroke="#1a1a1a" stroke-width="2" opacity="0.7"/>
+    <!-- Brows - sharp, long -->
+    <path d="M183 88 Q190 83 196 86" fill="none" stroke="#1a1a1a" stroke-width="1.5" opacity="0.7"/>
+    <path d="M198 86 Q206 83 212 88" fill="none" stroke="#1a1a1a" stroke-width="1.5" opacity="0.7"/>
+    <!-- Nose - prominent -->
+    <path d="M196 90 Q194 98 195 104" fill="none" stroke="#1a1a1a" stroke-width="1" opacity="0.5"/>
+    <!-- Mouth hidden in beard -->
+    <path d="M188 108 Q196 111 204 108" fill="none" stroke="#1a1a1a" stroke-width="0.8" opacity="0.3"/>
+
+    <!-- Belt -->
+    <path d="M165 260 Q198 268 230 260" fill="none" stroke="#2c2c2c" stroke-width="2" opacity="0.5"/>
+  </g>
+
+  <!-- Spiritual energy wisps (灵气) -->
+  <g opacity="0.08">
+    <path d="M120 200 Q130 180 145 190 Q155 200 150 215" fill="none" stroke="#2c2c2c" stroke-width="1.5"/>
+    <path d="M260 180 Q255 160 270 155 Q280 162 275 180" fill="none" stroke="#2c2c2c" stroke-width="1.5"/>
+    <path d="M180 300 Q190 285 200 290" fill="none" stroke="#2c2c2c" stroke-width="1"/>
+  </g>
+
+  <!-- Character name -->
+  <text x="200" y="480" text-anchor="middle" font-family="serif" font-size="26" fill="#1a1a1a" opacity="0.8" letter-spacing="5">大衍神君</text>
+
+  <!-- Vermillion seal -->
+  <g transform="translate(318, 442)">
+    <rect x="0" y="0" width="34" height="34" fill="#c03b3b" opacity="0.85" rx="3"/>
+    <text x="17" y="14" text-anchor="middle" font-family="serif" font-size="9" fill="#f5f0e8" opacity="0.9">大衍</text>
+    <text x="17" y="28" text-anchor="middle" font-family="serif" font-size="9" fill="#f5f0e8" opacity="0.9">神君</text>
+  </g>
+</svg>

@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500">
+  <defs>
+    <filter id="inkWash" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="softBlur">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5f0e8"/>
+      <stop offset="50%" stop-color="#f2ead8"/>
+      <stop offset="100%" stop-color="#f5f0e8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rice paper background -->
+  <rect width="400" height="500" fill="url(#bgGrad)"/>
+
+  <!-- Decorative border -->
+  <rect x="12" y="12" width="376" height="476" fill="none" stroke="#2c2c2c" stroke-width="1" opacity="0.5"/>
+  <rect x="16" y="16" width="368" height="468" fill="none" stroke="#2c2c2c" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- Withered tree silhouette -->
+  <g opacity="0.15">
+    <path d="M330 280 Q340 240 335 200 Q330 170 320 150 Q310 140 305 130 L310 120 Q315 125 320 130" fill="none" stroke="#2c2c2c" stroke-width="3"/>
+    <path d="M325 180 Q340 170 355 175" fill="none" stroke="#2c2c2c" stroke-width="2"/>
+    <path d="M322 210 Q305 200 295 208" fill="none" stroke="#2c2c2c" stroke-width="1.5"/>
+    <path d="M320 240 Q335 230 345 238" fill="none" stroke="#2c2c2c" stroke-width="1.5"/>
+  </g>
+
+  <!-- Dark clouds background -->
+  <g opacity="0.08">
+    <ellipse cx="200" cy="80" rx="80" ry="20" fill="#2c2c2c"/>
+    <ellipse cx="120" cy="100" rx="60" ry="15" fill="#2c2c2c"/>
+    <ellipse cx="290" cy="95" rx="55" ry="18" fill="#2c2c2c"/>
+  </g>
+
+  <!-- Elderly scheming figure -->
+  <g filter="url(#inkWash)">
+    <!-- Robe body - hunched, slightly sinister -->
+    <path d="M160 130 Q165 125 175 120 Q185 118 195 120 Q205 125 208 132 L212 260 Q215 300 218 340 Q220 380 222 420 L216 428 Q206 432 195 434 Q182 432 174 428 L168 420 Q165 380 162 340 Q158 300 155 260 Q152 200 155 155 Q157 140 160 130Z" fill="#1a1a1a" opacity="0.45"/>
+
+    <!-- Head - larger, bald top -->
+    <path d="M160 130 Q162 108 170 92 Q175 82 182 78 Q190 75 198 78 Q206 82 210 92 Q215 108 212 128 Q208 132 200 134 Q190 134 180 132 Q170 130 160 130Z" fill="#1a1a1a" opacity="0.7"/>
+
+    <!-- Bald crown -->
+    <ellipse cx="188" cy="80" rx="16" ry="10" fill="#f5f0e8" opacity="0.5"/>
+
+    <!-- Wispy hair on sides -->
+    <path d="M170 95 Q160 105 158 120" fill="none" stroke="#1a1a1a" stroke-width="2" opacity="0.5"/>
+    <path d="M208 95 Q218 105 220 118" fill="none" stroke="#1a1a1a" stroke-width="2" opacity="0.5"/>
+    <!-- Beard - thin, pointed -->
+    <path d="M182 118 Q178 130 175 145 Q172 155 170 160" fill="none" stroke="#1a1a1a" stroke-width="1.5" opacity="0.5"/>
+    <path d="M194 120 Q195 132 196 142 Q198 150 198 155" fill="none" stroke="#1a1a1a" stroke-width="1.5" opacity="0.4"/>
+
+    <!-- Face -->
+    <ellipse cx="190" cy="108" rx="16" ry="18" fill="#f5f0e8" opacity="0.4"/>
+    <!-- Eyes - scheming, narrow -->
+    <line x1="179" y1="102" x2="186" y2="102" stroke="#1a1a1a" stroke-width="2" opacity="0.7"/>
+    <line x1="194" y1="102" x2="201" y2="102" stroke="#1a1a1a" stroke-width="2" opacity="0.7"/>
+    <!-- Brows - heavy, slightly drooping (appears kind) -->
+    <path d="M176 97 Q183 94 188 97" fill="none" stroke="#1a1a1a" stroke-width="1.8" opacity="0.6"/>
+    <path d="M192 97 Q199 94 204 97" fill="none" stroke="#1a1a1a" stroke-width="1.8" opacity="0.6"/>
+    <!-- Nose -->
+    <path d="M190 100 Q188 108 189 113" fill="none" stroke="#1a1a1a" stroke-width="1" opacity="0.5"/>
+    <!-- Mouth - faint, ambiguous smile -->
+    <path d="M184 116 Q191 120 198 116" fill="none" stroke="#1a1a1a" stroke-width="1" opacity="0.5"/>
+
+    <!-- Wrinkles -->
+    <path d="M176 114 Q178 116 176 118" fill="none" stroke="#2c2c2c" stroke-width="0.5" opacity="0.3"/>
+    <path d="M202 114 Q204 116 202 118" fill="none" stroke="#2c2c2c" stroke-width="0.5" opacity="0.3"/>
+
+    <!-- Hidden hand (scheming gesture) -->
+    <path d="M185 240 Q175 250 170 260 Q165 268 168 275" fill="none" stroke="#2c2c2c" stroke-width="2" opacity="0.4"/>
+    <path d="M198 245 Q208 255 210 262 Q212 268 208 272" fill="none" stroke="#2c2c2c" stroke-width="2" opacity="0.4"/>
+  </g>
+
+  <!-- Dagger hidden in shadow -->
+  <g opacity="0.2" transform="translate(195, 260) rotate(15)">
+    <line x1="0" y1="0" x2="0" y2="30" stroke="#2c2c2c" stroke-width="2.5"/>
+    <path d="M-4 25 L0 35 L4 25Z" fill="#2c2c2c"/>
+    <line x1="0" y1="0" x2="0" y2="-5" stroke="#2c2c2c" stroke-width="1"/>
+  </g>
+
+  <!-- Ink wash ground shadow -->
+  <ellipse cx="195" cy="445" rx="50" ry="6" fill="#2c2c2c" opacity="0.08"/>
+
+  <!-- Character name -->
+  <text x="200" y="480" text-anchor="middle" font-family="serif" font-size="28" fill="#1a1a1a" opacity="0.8" letter-spacing="6">墨大夫</text>
+
+  <!-- Vermillion seal -->
+  <g transform="translate(318, 442)">
+    <rect x="0" y="0" width="34" height="34" fill="#c03b3b" opacity="0.85" rx="3"/>
+    <text x="17" y="14" text-anchor="middle" font-family="serif" font-size="10" fill="#f5f0e8" opacity="0.9">黄枫</text>
+    <text x="17" y="28" text-anchor="middle" font-family="serif" font-size="10" fill="#f5f0e8" opacity="0.9">之印</text>
+  </g>
+</svg>

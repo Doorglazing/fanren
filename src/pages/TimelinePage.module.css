@@ -1,0 +1,67 @@
+.page {
+  width: 100%; margin: 0; position: relative; z-index: 1;
+}
+
+.videoBg {
+  position: fixed; top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  object-fit: cover; z-index: 0; pointer-events: none;
+}
+
+.toggleBar {
+  display: flex;
+  justify-content: center;
+  gap: 1px;
+  padding: 0.75rem 0 0;
+  position: relative;
+  z-index: 2;
+}
+
+.toggleBtn {
+  padding: 0.45rem 1.6rem;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.55);
+  background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.toggleBtn:first-child { border-radius: 4px 0 0 4px; }
+.toggleBtn:last-child { border-radius: 0 4px 4px 0; }
+
+.toggleBtn:hover {
+  color: rgba(255,255,255,0.85);
+  background: rgba(0,0,0,0.45);
+}
+
+.toggleActive {
+  color: #fff;
+  background: rgba(192,59,59,0.35);
+  border-color: rgba(192,59,59,0.5);
+}
+
+.imageView {
+  width: 100%;
+  height: calc(100vh - 50px);
+  overflow-x: auto;
+  overflow-y: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.imageView::-webkit-scrollbar { height: 10px; }
+.imageView::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); border-radius: 5px; }
+.imageView::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, var(--jade), var(--gold), var(--vermillion));
+  border-radius: 5px; border: 2px solid transparent;
+}
+
+.fullImage {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: none;
+}
