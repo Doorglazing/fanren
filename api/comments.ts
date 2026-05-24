@@ -28,14 +28,13 @@ function uid() { return Date.now().toString(36) + Math.random().toString(36).sli
 async function load(): Promise<Comment[]> {
   if (process.env.BLOB_READ_WRITE_TOKEN) {
     try {
-      const { head } = await import('@vercel/blob');
-      const blob = await head(BLOB_PATH);
-      if (blob) {
-        const res = await fetch(blob.url);
+      const { list } = await import('@vercel/blob');
+      const { blobs } = await list({ prefix: BLOB_PATH, limit: 1 });
+      if (blobs.length > 0) {
+        const res = await fetch(blobs[0].url);
         if (res.ok) {
           const data = await res.json();
-          memoryStore = data;
-          return data;
+          if (Array.isArray(data)) { memoryStore = data; return data; }
         }
       }
     } catch { /* fallthrough */ }
