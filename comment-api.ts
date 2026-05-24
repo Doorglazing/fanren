@@ -139,6 +139,22 @@ export default function commentApi(): Plugin {
         next();
       });
 
+      // GET /api/visitors — IP 去重访问计数
+      const visitorsFile = path.resolve('visitors-data.json');
+      let visitorsCache: string[] = [];
+      try { visitorsCache = JSON.parse(fs.readFileSync(visitorsFile, 'utf-8')); } catch {}
+      server.middlewares.use('/api/visitors', (req, res, next) => {
+        if (req.method !== 'GET') { next(); return; }
+        const ip = (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim()
+          || req.socket.remoteAddress || '';
+        if (ip && !visitorsCache.includes(ip)) {
+          visitorsCache.push(ip);
+          fs.writeFileSync(visitorsFile, JSON.stringify(visitorsCache), 'utf-8');
+        }
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify({ count: visitorsCache.length }));
+      });
+
       // POST /api/comments
       server.middlewares.use('/api/comments', (req, res, next) => {
         if (req.method === 'POST') {
